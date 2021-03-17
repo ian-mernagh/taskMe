@@ -15,6 +15,8 @@
 		192410C02600DFB50081B220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 192410BE2600DFB50081B220 /* LaunchScreen.storyboard */; };
 		192410CB2600DFB50081B220 /* taskMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192410CA2600DFB50081B220 /* taskMeTests.swift */; };
 		192410D62600DFB50081B220 /* taskMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192410D52600DFB50081B220 /* taskMeUITests.swift */; };
+		192410E4260242A80081B220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192410E3260242A80081B220 /* GoogleService-Info.plist */; };
+		192C0D7B4D00BCFFFAE3C4F6 /* Pods_taskMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		192410D12600DFB50081B220 /* taskMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taskMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		192410D52600DFB50081B220 /* taskMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskMeUITests.swift; sourceTree = "<group>"; };
 		192410D72600DFB50081B220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		192410E3260242A80081B220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		949BEBD5F8C5F9379E23DAA9 /* Pods-taskMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.release.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.release.xcconfig"; sourceTree = "<group>"; };
+		BC7595F78214E20B097436CE /* Pods-taskMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.debug.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.debug.xcconfig"; sourceTree = "<group>"; };
+		C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192C0D7B4D00BCFFFAE3C4F6 /* Pods_taskMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +90,8 @@
 				192410C92600DFB50081B220 /* taskMeTests */,
 				192410D42600DFB50081B220 /* taskMeUITests */,
 				192410B12600DFB30081B220 /* Products */,
+				AC4BE4E5FBF3AF610D6509C5 /* Pods */,
+				932A3CF0B517D94BBD3AD845 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +114,7 @@
 				192410B92600DFB50081B220 /* Assets.xcassets */,
 				192410BE2600DFB50081B220 /* LaunchScreen.storyboard */,
 				192410C12600DFB50081B220 /* Info.plist */,
+				192410E3260242A80081B220 /* GoogleService-Info.plist */,
 				192410BB2600DFB50081B220 /* Preview Content */,
 			);
 			path = taskMe;
@@ -136,6 +146,24 @@
 			path = taskMeUITests;
 			sourceTree = "<group>";
 		};
+		932A3CF0B517D94BBD3AD845 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC4BE4E5FBF3AF610D6509C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC7595F78214E20B097436CE /* Pods-taskMe.debug.xcconfig */,
+				949BEBD5F8C5F9379E23DAA9 /* Pods-taskMe.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 192410DA2600DFB50081B220 /* Build configuration list for PBXNativeTarget "taskMe" */;
 			buildPhases = (
+				20741D9E827D0AFE34C5BE27 /* [CP] Check Pods Manifest.lock */,
 				192410AC2600DFB30081B220 /* Sources */,
 				192410AD2600DFB30081B220 /* Frameworks */,
 				192410AE2600DFB30081B220 /* Resources */,
+				1F503C94FAB37B96735C0580 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,6 +273,7 @@
 				192410C02600DFB50081B220 /* LaunchScreen.storyboard in Resources */,
 				192410BD2600DFB50081B220 /* Preview Assets.xcassets in Resources */,
 				192410BA2600DFB50081B220 /* Assets.xcassets in Resources */,
+				192410E4260242A80081B220 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +292,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F503C94FAB37B96735C0580 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-taskMe/Pods-taskMe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-taskMe/Pods-taskMe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-taskMe/Pods-taskMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20741D9E827D0AFE34C5BE27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-taskMe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		192410AC2600DFB30081B220 /* Sources */ = {
@@ -432,6 +505,7 @@
 		};
 		192410DB2600DFB50081B220 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC7595F78214E20B097436CE /* Pods-taskMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -451,6 +525,7 @@
 		};
 		192410DC2600DFB50081B220 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 949BEBD5F8C5F9379E23DAA9 /* Pods-taskMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
