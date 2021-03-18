@@ -7,15 +7,31 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
-struct LoginView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct LoginView: View{
+    
+    enum Action{
+        case signUp, resetPW
+    }
+    
+    @State var showSheet = false
+    @State var action : Action?
+    @EnvironmentObject var userInfo: UserInfo
+    var body: some View{
+        SignInWithEmailView(showSheet: $showSheet, action: $action).sheet(isPresented: $showSheet) {
+            if self.action == .signUp{
+                SignUpView().environmentObject(self.userInfo)
+            }
+            else{
+                ForgotPasswordView()
+            }
+        }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some View{
         LoginView()
     }
 }
