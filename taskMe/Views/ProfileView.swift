@@ -23,7 +23,7 @@ struct ProfileView: View {
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
         
-        let database = Database.database().reference().child("users/\(uid)")
+        let database = Database.database().reference().child("user/\(uid)")
         
         database.observeSingleEvent(of: .value) { snapshot in
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
@@ -64,7 +64,7 @@ struct ProfileView: View {
                     guard let imageURL = url else {return}
                     
                     // get a refrnece to the database object
-                    let database = Database.database().reference().child("users/\(uid)")
+                    let database = Database.database().reference().child("user/\(uid)")
                     // declare and initize a dictionary
                     //with key photURL and a value that is
                     // our URL
