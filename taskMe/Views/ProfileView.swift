@@ -10,7 +10,7 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
-struct HomeView: View {
+struct ProfileView: View {
     @EnvironmentObject var userInfo : UserInfo
     @State private var image: Image = Image("user")
     @State private var inputImage: UIImage?
@@ -33,11 +33,6 @@ struct HomeView: View {
             }
         }
     }
-    
-    
-    
-    
-    
     
     
     //This function will b ecalled when the user dismisses the imagepicker
