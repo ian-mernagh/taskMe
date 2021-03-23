@@ -13,6 +13,7 @@ struct UserViewModel {
     var password: String = ""
     var fullname: String = ""
     var confirmPassword: String = ""
+    var isTeen: Bool? = nil
     
     // MARK: - Validation Checks
     
