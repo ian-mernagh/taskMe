@@ -40,13 +40,10 @@ struct ProfileView: View {
     //in storage, get the urls
     
     func saveImage(){
-        
-        
-        
+
         guard let input = inputImage else {return}
         //load the selected inage into the Image object on our view
         image = Image(uiImage: input)
-        
         
         //stuff to save the image
         guard let uid = Auth.auth().currentUser?.uid else {return}
@@ -82,7 +79,6 @@ struct ProfileView: View {
     var body: some View {
         
         VStack{
-            
             image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -134,6 +130,6 @@ struct ProfileView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        ProfileView()
     }
 }

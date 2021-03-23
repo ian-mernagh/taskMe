@@ -22,7 +22,7 @@ struct ContentView: View {
                 LoginView()
             }
             else{
-                HomeView()
+                ProfileView()
             }
         }.onAppear{
             self.userInfo.configureFirebaseStateDidChange()
