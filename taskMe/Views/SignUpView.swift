@@ -52,14 +52,22 @@ struct SignUpView: View {
                                 self.user.isTeen = false
                             }
                         }){
-                            Text("Requester/Worker")
+                            if(self.user.isTeen==false) {
+                                Text("Requester")
                                 .frame(width: 200)
-                                .padding(.vertical, 15)
                                 .padding(.vertical, 15)
                                 .background(Color.green)
                                 .cornerRadius(8)
                                 .foregroundColor(.white)
-                            
+                            }
+                            else {
+                                Text("Worker")
+                                .frame(width: 200)
+                                .padding(.vertical, 15)
+                                .background(Color.green)
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                            }
                         }
                     }
                 }.frame(width: 300)

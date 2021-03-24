@@ -107,7 +107,6 @@ struct ProfileView: View {
                 Text("Sign Out")
                     .frame(width: 200)
                     .padding(.vertical, 15)
-                    .padding(.vertical, 15)
                     .background(Color.green)
                     .cornerRadius(8)
                     .foregroundColor(.white)
@@ -116,7 +115,7 @@ struct ProfileView: View {
 //            if (self.user.isTeen==false) {
 //                Text("Requester")
 //            }
-//            else if (self.user.isTeen==true){
+//            else {
 //                Text("Worker")
 //            }
 //                self.user.isTeen = false
