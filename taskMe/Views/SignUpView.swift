@@ -43,6 +43,25 @@ struct SignUpView: View {
                             Text(user.validConfirmPasswordText).font(.caption).foregroundColor(.red)
                         }
                     }
+                    VStack() {
+                        Button(action: {
+                            if (self.user.isTeen==false) {
+                                self.user.isTeen = true
+                            }
+                            else {
+                                self.user.isTeen = false
+                            }
+                        }){
+                            Text("Requester/Worker")
+                                .frame(width: 200)
+                                .padding(.vertical, 15)
+                                .padding(.vertical, 15)
+                                .background(Color.green)
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                            
+                        }
+                    }
                 }.frame(width: 300)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 VStack(spacing: 20 ) {

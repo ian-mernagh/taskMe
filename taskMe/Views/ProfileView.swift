@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
+
 struct ProfileView: View {
     @EnvironmentObject var userInfo : UserInfo
     @State private var image: Image = Image("user")
@@ -112,7 +113,14 @@ struct ProfileView: View {
                     .foregroundColor(.white)
                 
             }
-            
+//            if (self.user.isTeen==false) {
+//                Text("Requester")
+//            }
+//            else if (self.user.isTeen==true){
+//                Text("Worker")
+//            }
+//                self.user.isTeen = false
+//            }
             
         }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
             
