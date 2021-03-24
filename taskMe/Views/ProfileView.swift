@@ -40,7 +40,7 @@ struct ProfileView: View {
     //in storage, get the urls
     
     func saveImage(){
-
+        
         guard let input = inputImage else {return}
         //load the selected inage into the Image object on our view
         image = Image(uiImage: input)
