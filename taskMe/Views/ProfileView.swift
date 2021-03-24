@@ -98,11 +98,6 @@ struct ProfileView: View {
                 
             }.padding()
             
-            
-            
-            
-            
-            
             Button(action: {
                 try! Auth.auth().signOut()
                 self.userInfo.isUserAuthenticated = .signedOut
@@ -128,7 +123,7 @@ struct ProfileView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
     }
