@@ -77,6 +77,7 @@ struct SignUpView: View {
                         Auth.auth().createUser(withEmail: self.user.email, password: self.user.password) { (user, error) in
                             self.userInfo.configureFirebaseStateDidChange()
                             self.presentationMode.wrappedValue.dismiss()
+                            self.user.saveTeen(Teen: self.user.isTeen)
                         }
                         
                     }) {

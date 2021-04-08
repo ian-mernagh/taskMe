@@ -7,16 +7,21 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestore
 
 struct UserViewModel {
     var email: String = ""
     var password: String = ""
     var fullname: String = ""
     var confirmPassword: String = ""
-    var isTeen: Bool? = false
+    var isTeen: Bool = false
     
     // MARK: - Validation Checks
-    
+    func saveTeen(Teen: Bool){
+        let database = Firestore.firestore()
+        database.collection("Users").document().setData(["Teen" : self.isTeen])
+    }
     func passwordsMatch(_confirmPW:String) -> Bool {
         return _confirmPW == password
     }
@@ -92,3 +97,4 @@ struct UserViewModel {
         }
     }
 }
+
