@@ -11,6 +11,7 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    
     var window: UIWindow?
     var userInfo = UserInfo()
     

@@ -12,6 +12,9 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct ProfileView: View {
+    
+    
+    
     @EnvironmentObject var userInfo : UserInfo
     @State private var image: Image = Image("user")
     @State private var inputImage: UIImage?
