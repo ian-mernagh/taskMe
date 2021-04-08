@@ -26,6 +26,7 @@
 		197E68B52603962500EB47D8 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68B42603962500EB47D8 /* LoadImage.swift */; };
 		197E68B72603970C00EB47D8 /* SignInWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68B62603970C00EB47D8 /* SignInWithEmailView.swift */; };
 		197E68B92603986500EB47D8 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68B82603986500EB47D8 /* ForgotPasswordView.swift */; };
+		754B75F7261C85CA00EAA457 /* WorkerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754B75F6261C85CA00EAA457 /* WorkerHomeView.swift */; };
 		75F5E8A9260CD33F009FA8F0 /* TheHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		197E68B42603962500EB47D8 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		197E68B62603970C00EB47D8 /* SignInWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailView.swift; sourceTree = "<group>"; };
 		197E68B82603986500EB47D8 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		754B75F6261C85CA00EAA457 /* WorkerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerHomeView.swift; sourceTree = "<group>"; };
 		75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheHomeView.swift; sourceTree = "<group>"; };
 		949BEBD5F8C5F9379E23DAA9 /* Pods-taskMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.release.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.release.xcconfig"; sourceTree = "<group>"; };
 		BC7595F78214E20B097436CE /* Pods-taskMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.debug.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				197E68AC2603881900EB47D8 /* ProfileView.swift */,
 				75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */,
+				754B75F6261C85CA00EAA457 /* WorkerHomeView.swift */,
 				197E68AE2603882500EB47D8 /* LoginView.swift */,
 				197E68B22603960500EB47D8 /* ImagePicker.swift */,
 				197E68B62603970C00EB47D8 /* SignInWithEmailView.swift */,
@@ -390,6 +393,7 @@
 				197E68AD2603881900EB47D8 /* ProfileView.swift in Sources */,
 				197E68AB2603872C00EB47D8 /* UserViewModel.swift in Sources */,
 				197E68B32603960500EB47D8 /* ImagePicker.swift in Sources */,
+				754B75F7261C85CA00EAA457 /* WorkerHomeView.swift in Sources */,
 				192410B42600DFB30081B220 /* AppDelegate.swift in Sources */,
 				192410B62600DFB30081B220 /* SceneDelegate.swift in Sources */,
 				197E68B72603970C00EB47D8 /* SignInWithEmailView.swift in Sources */,

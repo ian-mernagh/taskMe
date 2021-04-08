@@ -15,15 +15,30 @@ struct TheHomeView: View {
     var body: some View {
         
         VStack{
+            Spacer()
+            HStack{
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
         Button(action: {
             self.showProfileView.toggle()
         }){
             Image("userSymbol")
+                .renderingMode(.original).resizable().frame(width: 35, height: 35, alignment: .center)
         }.sheet(isPresented: $showProfileView){
             ProfileView()
-        }
-        
-        
+                }
+             Spacer()
+            }
+            Spacer()
+            Spacer()
+        Spacer()
+        Spacer()
+        Spacer()
+        Spacer()
+        Spacer()
+            
     }
     }
 }
