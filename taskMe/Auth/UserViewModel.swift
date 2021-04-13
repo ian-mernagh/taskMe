@@ -18,10 +18,12 @@ struct UserViewModel {
     var isTeen: Bool = false
     
     // MARK: - Validation Checks
-    func saveTeen(Teen: Bool){
-        let database = Firestore.firestore()
-        database.collection("Users").document().setData(["Teen" : self.isTeen])
+  /*  func saveTeen(Teen: Bool){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let database = Database.database().reference().child("users/\(uid)/address")
+        database.setValue(isTeen)
     }
+ */
     func passwordsMatch(_confirmPW:String) -> Bool {
         return _confirmPW == password
     }
