@@ -8,6 +8,8 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct SignUpView: View {
     
@@ -48,7 +50,7 @@ struct SignUpView: View {
                             if (self.user.isTeen==false) {
                                 self.user.isTeen = true
                             }
-                            else {
+                            else if (self.user.isTeen==true) {
                                 self.user.isTeen = false
                             }
                         }){
@@ -60,7 +62,7 @@ struct SignUpView: View {
                                 .cornerRadius(8)
                                 .foregroundColor(.white)
                             }
-                            else {
+                            else if (self.user.isTeen==true){
                                 Text("Worker")
                                 .frame(width: 200)
                                 .padding(.vertical, 15)
@@ -75,9 +77,17 @@ struct SignUpView: View {
                 VStack(spacing: 20 ) {
                     Button(action: {
                         Auth.auth().createUser(withEmail: self.user.email, password: self.user.password) { (user, error) in
+                            guard let uid = Auth.auth().currentUser?.uid else {return}
+                            let database2 = Database.database().reference().child("users/\(uid)/isTeen")
+                                             print(self.user.isTeen)
+                                             let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
+                                             database2.setValue(userObject2)
+                                             print(self.user.fullname)
+                                             let database3 = Database.database().reference().child("users/\(uid)/name")
+                                             let userObject3 : [String : String] = ["name" : self.user.fullname]
+                                             database3.setValue(userObject3)
                             self.userInfo.configureFirebaseStateDidChange()
                             self.presentationMode.wrappedValue.dismiss()
-                         //   self.user.saveTeen(Teen: self.user.isTeen)
                         }
                         
                     }) {

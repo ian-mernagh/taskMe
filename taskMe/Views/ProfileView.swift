@@ -13,8 +13,6 @@ import FirebaseDatabase
 
 struct ProfileView: View {
     
-    
-    
     @EnvironmentObject var userInfo : UserInfo
     @State private var image: Image = Image("user")
     @State private var inputImage: UIImage?
@@ -76,9 +74,6 @@ struct ProfileView: View {
                     let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString]
                     //put URL in database
                     database.setValue(userObject)
-                    let database2 = Database.database().reference().child("users/\(uid)/isTeen")
-                    let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
-                    database2.setValue(userObject2)
                 }
             }
         }

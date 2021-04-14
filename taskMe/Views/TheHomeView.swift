@@ -43,10 +43,6 @@ struct TheHomeView: View {
     }
 }
 
-
-
-
-
 struct TheHomeView_Previews: PreviewProvider {
     static var previews: some View {
         TheHomeView()
