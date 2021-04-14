@@ -45,10 +45,11 @@ struct SignUpView: View {
                     }
                     VStack() {
                         Button(action: {
+                            self.user.isTeen = true
                             if (self.user.isTeen==false) {
                                 self.user.isTeen = true
                             }
-                            else {
+                            else if (self.user.isTeen == true){
                                 self.user.isTeen = false
                             }
                         }){
@@ -60,7 +61,7 @@ struct SignUpView: View {
                                 .cornerRadius(8)
                                 .foregroundColor(.white)
                             }
-                            else {
+                            else if (self.user.isTeen == true){
                                 Text("Worker")
                                 .frame(width: 200)
                                 .padding(.vertical, 15)

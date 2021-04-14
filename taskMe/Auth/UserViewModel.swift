@@ -69,6 +69,7 @@ struct UserViewModel {
     var validNameText: String {
         if !isEmpty(_field: fullname) {
             return ""
+        //    self.fullname = fullname
         } else {
             return "Enter your full name"
         }
