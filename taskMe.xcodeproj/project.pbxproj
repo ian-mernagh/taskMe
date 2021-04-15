@@ -26,6 +26,10 @@
 		197E68B52603962500EB47D8 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68B42603962500EB47D8 /* LoadImage.swift */; };
 		197E68B72603970C00EB47D8 /* SignInWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68B62603970C00EB47D8 /* SignInWithEmailView.swift */; };
 		197E68B92603986500EB47D8 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68B82603986500EB47D8 /* ForgotPasswordView.swift */; };
+		7532425626271C9E009D2C23 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425526271C9E009D2C23 /* Worker.swift */; };
+		7532425826271D4A009D2C23 /* WorkerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425726271D4A009D2C23 /* WorkerCard.swift */; };
+		7532425C26271ECF009D2C23 /* WorkersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425B26271ECF009D2C23 /* WorkersList.swift */; };
+		7532425E26271FA9009D2C23 /* WorkerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425D26271FA9009D2C23 /* WorkerDetail.swift */; };
 		754B75F7261C85CA00EAA457 /* WorkerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754B75F6261C85CA00EAA457 /* WorkerHomeView.swift */; };
 		75F5E8A9260CD33F009FA8F0 /* TheHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +76,10 @@
 		197E68B42603962500EB47D8 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		197E68B62603970C00EB47D8 /* SignInWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailView.swift; sourceTree = "<group>"; };
 		197E68B82603986500EB47D8 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		7532425526271C9E009D2C23 /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
+		7532425726271D4A009D2C23 /* WorkerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCard.swift; sourceTree = "<group>"; };
+		7532425B26271ECF009D2C23 /* WorkersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkersList.swift; sourceTree = "<group>"; };
+		7532425D26271FA9009D2C23 /* WorkerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetail.swift; sourceTree = "<group>"; };
 		754B75F6261C85CA00EAA457 /* WorkerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerHomeView.swift; sourceTree = "<group>"; };
 		75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheHomeView.swift; sourceTree = "<group>"; };
 		949BEBD5F8C5F9379E23DAA9 /* Pods-taskMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.release.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +184,10 @@
 				197E68AC2603881900EB47D8 /* ProfileView.swift */,
 				75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */,
 				754B75F6261C85CA00EAA457 /* WorkerHomeView.swift */,
+				7532425B26271ECF009D2C23 /* WorkersList.swift */,
+				7532425726271D4A009D2C23 /* WorkerCard.swift */,
+				7532425D26271FA9009D2C23 /* WorkerDetail.swift */,
+				7532425526271C9E009D2C23 /* Worker.swift */,
 				197E68AE2603882500EB47D8 /* LoginView.swift */,
 				197E68B22603960500EB47D8 /* ImagePicker.swift */,
 				197E68B62603970C00EB47D8 /* SignInWithEmailView.swift */,
@@ -396,12 +408,16 @@
 				754B75F7261C85CA00EAA457 /* WorkerHomeView.swift in Sources */,
 				192410B42600DFB30081B220 /* AppDelegate.swift in Sources */,
 				192410B62600DFB30081B220 /* SceneDelegate.swift in Sources */,
+				7532425C26271ECF009D2C23 /* WorkersList.swift in Sources */,
 				197E68B72603970C00EB47D8 /* SignInWithEmailView.swift in Sources */,
+				7532425E26271FA9009D2C23 /* WorkerDetail.swift in Sources */,
 				197E68A9260386B000EB47D8 /* UserInfo.swift in Sources */,
+				7532425626271C9E009D2C23 /* Worker.swift in Sources */,
 				197E68AF2603882500EB47D8 /* LoginView.swift in Sources */,
 				75F5E8A9260CD33F009FA8F0 /* TheHomeView.swift in Sources */,
 				197E68B92603986500EB47D8 /* ForgotPasswordView.swift in Sources */,
 				192410B82600DFB30081B220 /* ContentView.swift in Sources */,
+				7532425826271D4A009D2C23 /* WorkerCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

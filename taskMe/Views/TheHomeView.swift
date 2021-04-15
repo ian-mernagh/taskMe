@@ -9,37 +9,42 @@
 import SwiftUI
 
 struct TheHomeView: View {
-  
+    
     @State private var showProfileView = false
     
+    @State var workers : [Worker] =
+        [Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com"),
+         Worker(image: "aslan", name: "Aslan", email: "aslan@NewWaveComputers.com"),
+         Worker(image: "humphrey", name: "Humphrey", email: "humphrey@NewWaveComputers.com"),
+         Worker(image: "joseph", name: "Joseph", email: "joseph@NewWaveComputers.com"),
+         Worker(image: "kelly", name: "Kelly", email: "kelly@NewWaveComputers.com"),
+         Worker(image: "michael", name: "Michael", email: "michael@NewWaveComputers.com"),
+         Worker(image: "prince", name: "Prince", email: "prince@NewWaveComputers.com"),
+         Worker(image: "tyler", name: "Tyler", email: "tyler@NewWaveComputers.com")
+            ].sorted {$0.name < $1.name}
     var body: some View {
-        
-        VStack{
-            Spacer()
-            HStack{
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-        Button(action: {
-            self.showProfileView.toggle()
-        }){
-            Image("userSymbol")
-                .renderingMode(.original).resizable().frame(width: 35, height: 35, alignment: .center)
-        }.sheet(isPresented: $showProfileView){
-            ProfileView()
-                }
-             Spacer()
-            }
-            Spacer()
-            Spacer()
-        Spacer()
-        Spacer()
-        Spacer()
-        Spacer()
-        Spacer()
+        ZStack{
             
-    }
+            NavigationView{
+                List{
+                    ForEach(workers.indices, id: \.self){
+                        i in
+                        WorkerCard(worker: self.$workers[i], workers: self.$workers)
+                    }
+                }.navigationBarTitle("")
+                    .navigationBarItems(trailing: Button(action: {
+                        self.showProfileView.toggle()
+                    }){
+                        Image("user")
+                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
+                    }.sheet(isPresented: $showProfileView){
+                        ProfileView()
+                }
+            )
+                
+            }
+            
+        }
     }
 }
 
