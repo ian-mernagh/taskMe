@@ -74,6 +74,7 @@ struct ProfileView: View {
                     let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString]
                     //put URL in database
                     database.setValue(userObject)
+                 
                 }
             }
         }

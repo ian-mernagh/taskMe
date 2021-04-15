@@ -15,6 +15,8 @@ struct SignUpView: View {
     
     @EnvironmentObject var userInfo: UserInfo
     @State var user: UserViewModel = UserViewModel()
+    @State private var image: Image = Image("user")
+    @State private var inputImage: UIImage?
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -77,7 +79,7 @@ struct SignUpView: View {
                 VStack(spacing: 20 ) {
                     Button(action: {
                         Auth.auth().createUser(withEmail: self.user.email, password: self.user.password) { (user, error) in
-                            guard let uid = Auth.auth().currentUser?.uid else {return}
+                           guard let uid = Auth.auth().currentUser?.uid else {return}
                             let database2 = Database.database().reference().child("users/\(uid)/isTeen")
                                              print(self.user.isTeen)
                                              let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
