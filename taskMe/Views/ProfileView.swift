@@ -74,7 +74,14 @@ struct ProfileView: View {
                     let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString]
                     //put URL in database
                     database.setValue(userObject)
-                 
+                   /*
+                    let database2 = Database.database().reference().child("users/\(uid)/isTeen")
+                    let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
+                    database2.setValue(userObject2)
+                    let database3 = Database.database().reference().child("users/\(uid)/fullName")
+                    let userObject3 : [String : String] = ["name" : self.user.fullname]
+                    database3.setValue(userObject3)
+ */
                 }
             }
         }
@@ -85,7 +92,6 @@ struct ProfileView: View {
  */
     }
     var body: some View {
-        
         VStack{
             image
                 .resizable()
@@ -95,6 +101,8 @@ struct ProfileView: View {
             
             Button(action: {
                 self.showingImagePicker = true
+                print(self.user.fullname)
+                print(self.user.isTeen)
             }){
                 
                 Text("Change Image")
@@ -109,6 +117,7 @@ struct ProfileView: View {
             Button(action: {
                 try! Auth.auth().signOut()
                 self.userInfo.isUserAuthenticated = .signedOut
+                print(self.user.isTeen)
                 
             }){
                 Text("Sign Out")
