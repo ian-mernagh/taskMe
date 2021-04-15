@@ -31,12 +31,12 @@ struct TheHomeView: View {
                         i in
                         WorkerCard(worker: self.$workers[i], workers: self.$workers)
                     }
-                }.navigationBarTitle("Workers")
+                }.navigationBarTitle("")
                     .navigationBarItems(trailing: Button(action: {
                         self.showProfileView.toggle()
                     }){
-                        Image("userSymbol")
-                            .renderingMode(.original).resizable().frame(width: 35, height: 35, alignment: .center)
+                        Image("user")
+                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
                     }.sheet(isPresented: $showProfileView){
                         ProfileView()
                 }

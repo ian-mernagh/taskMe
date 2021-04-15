@@ -35,7 +35,7 @@ struct WorkerCard: View {
                         .lineLimit(1)
                 }
             }
-        }.background(Color.orange.opacity(0.7))
+        }.background(Color.white.opacity(0.7))
             .cornerRadius(20)
             .padding(.horizontal, 10)
     }

@@ -25,6 +25,7 @@ struct WorkerDetail: View {
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
             
+            
            
             
          
