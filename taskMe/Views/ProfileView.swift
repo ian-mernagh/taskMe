@@ -13,8 +13,9 @@ import FirebaseDatabase
 
 struct ProfileView: View {
     
+    //@EnvironmentalObject var userObject : [String : Any]
     @EnvironmentObject var userInfo : UserInfo
-    @State public var image: Image = Image("user")
+    @State private var image: Image = Image("user")
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
@@ -43,15 +44,10 @@ struct ProfileView: View {
     //in storage, get the urls
     
     func saveImage(){
-        
         guard let input = inputImage else {return}
         //load the selected inage into the Image object on our view
         image = Image(uiImage: input)
-        
-        //stuff to save the image
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        //now get a refrence to our storage object
         let storage = Storage.storage().reference().child("user/\(uid)")
         
         //compress and convert image to data
@@ -66,33 +62,78 @@ struct ProfileView: View {
                     //unwarp the url object. Return if nil
                     guard let imageURL = url else {return}
                     
-                    // get a refrnece to the database object
-                    let database = Database.database().reference().child("users/\(uid)")
-                    // declare and initize a dictionary
-                    //with key photURL and a value that is
-                    // our URL
-                    let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString]
-                    //put URL in database
-                    database.setValue(userObject)
-                   /*
-                    let database2 = Database.database().reference().child("users/\(uid)/isTeen")
-                    let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
-                    database2.setValue(userObject2)
-                    let database3 = Database.database().reference().child("users/\(uid)/fullName")
-                    let userObject3 : [String : String] = ["name" : self.user.fullname]
-                    database3.setValue(userObject3)
- */
+                    let database = Database.database().reference().child("users/\(uid)/photoURL")
+                    
+                    database.setValue(imageURL.absoluteString)
+                    
+                    
                 }
             }
         }
-
         /*
-        let database2 = Database.database().reference().child("users/\(uid)/isTeen")
-        database2.setValue(user.isTeen)
- */
+         func saveImage(){
+         
+         guard let input = inputImage else {return}
+         //load the selected inage into the Image object on our view
+         image = Image(uiImage: input)
+         
+         //stuff to save the image
+         guard let uid = Auth.auth().currentUser?.uid else {return}
+         
+         //now get a refrence to our storage object
+         let storage = Storage.storage().reference().child("user/\(uid)")
+         
+         //compress and convert image to data
+         guard let imageData = inputImage?.jpegData(compressionQuality: 0.75) else {return}
+         
+         //store our image
+         storage.putData(imageData, metadata: StorageMetadata()) { (metaData, error) in
+         if let _ = metaData{
+         storage.downloadURL { (url, error) in
+         
+         guard let uid = Auth.auth().currentUser?.uid else{return}
+         //unwarp the url object. Return if nil
+         guard let imageURL = url else {return}
+         
+         // get a refrnece to the database object
+         let database = Database.database().reference().child("users/\(uid)")
+         // declare and initize a dictionary
+         //with key photURL and a value that is
+         // our URL
+         let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString, "isTeen" : self.user.isTeen, "name" : self.user.fullname]
+         //put URL in database
+         database.setValue(userObject)
+         /*
+         let database2 = Database.database().reference().child("users/\(uid)/isTeen")
+         let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
+         database2.setValue(userObject2)
+         let database3 = Database.database().reference().child("users/\(uid)/fullName")
+         let userObject3 : [String : String] = ["name" : self.user.fullname]
+         database3.setValue(userObject3)
+         guard let uid = Auth.auth().currentUser?.uid else {return}
+         let database2 = Database.database().reference().child("users/\(uid)/")
+         print(self.user.isTeen)
+         let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
+         database2.setValue(userObject2)
+         print(self.user.fullname)
+         let database3 = Database.database().reference().child("users/\(uid)/")
+         let userObject3 : [String : String] = ["name" : self.user.fullname]
+         database3.setValue(userObject3)
+         self.userInfo.configureFirebaseStateDidChange()
+         self.presentationMode.wrappedValue.dismiss()
+         */
+         }
+         }
+         }
+         */
+        /*
+         let database2 = Database.database().reference().child("users/\(uid)/isTeen")
+         database2.setValue(user.isTeen)
+         */
     }
     var body: some View {
         VStack{
+            //image
             image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -128,6 +169,14 @@ struct ProfileView: View {
                     .foregroundColor(.white)
                 
             }
+            //            if (self.user.isTeen==false) {
+            //                Text("Requester")
+            //            }
+            //            else {
+            //                Text("Worker")
+            //            }
+            //                self.user.isTeen = false
+            //            }
             
         }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
             
