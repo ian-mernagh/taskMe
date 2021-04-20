@@ -14,7 +14,7 @@ import FirebaseDatabase
 struct ProfileView: View {
     
     @EnvironmentObject var userInfo : UserInfo
-    @State private var image: Image = Image("user")
+    @State public var image: Image = Image("user")
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
@@ -128,14 +128,6 @@ struct ProfileView: View {
                     .foregroundColor(.white)
                 
             }
-//            if (self.user.isTeen==false) {
-//                Text("Requester")
-//            }
-//            else {
-//                Text("Worker")
-//            }
-//                self.user.isTeen = false
-//            }
             
         }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
             
