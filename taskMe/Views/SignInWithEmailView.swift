@@ -68,7 +68,7 @@ struct SignInWithEmailView: View {
         }
         .padding(.top, 100)
         .frame(width: 300)
-        .textFieldStyle(RoundedBorderTextFieldStyle()).foregroundColor(Color.white)
+        .textFieldStyle(RoundedBorderTextFieldStyle()).foregroundColor(Color.black)
         }
     }
 }

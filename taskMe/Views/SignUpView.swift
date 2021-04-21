@@ -48,9 +48,9 @@ struct SignUpView: View {
                         }
                         
                         VStack(alignment: .leading) {
-                            SecureField("Confirm Password", text: self.$user.confirmPassword).padding(.bottom)
+                            SecureField("Confirm Password", text: self.$user.confirmPassword)
                             if !user.passwordsMatch(_confirmPW: user.confirmPassword) {
-                                Text(user.validConfirmPasswordText).font(.caption).foregroundColor(.red)
+                                Text(user.validConfirmPasswordText).font(.caption).foregroundColor(.red).padding(.bottom)
                             }
                         }
                         
