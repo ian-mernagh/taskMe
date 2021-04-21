@@ -29,13 +29,13 @@
 		7520ED4D263058040045A834 /* RequesterHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520ED4C263058040045A834 /* RequesterHomeView.swift */; };
 		7520ED4F2630582D0045A834 /* RequesterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520ED4E2630582D0045A834 /* RequesterDetail.swift */; };
 		7520ED51263058D90045A834 /* RequesterCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520ED50263058D90045A834 /* RequesterCard.swift */; };
-		7520ED53263059200045A834 /* RequesterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520ED52263059200045A834 /* RequesterList.swift */; };
+		7520ED53263059200045A834 /* RequestersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520ED52263059200045A834 /* RequestersList.swift */; };
 		7520ED552630595F0045A834 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520ED542630595F0045A834 /* Requester.swift */; };
 		7532425626271C9E009D2C23 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425526271C9E009D2C23 /* Worker.swift */; };
 		7532425826271D4A009D2C23 /* WorkerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425726271D4A009D2C23 /* WorkerCard.swift */; };
 		7532425C26271ECF009D2C23 /* WorkersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425B26271ECF009D2C23 /* WorkersList.swift */; };
 		7532425E26271FA9009D2C23 /* WorkerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532425D26271FA9009D2C23 /* WorkerDetail.swift */; };
-		75F5E8A9260CD33F009FA8F0 /* TheHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */; };
+		75F5E8A9260CD33F009FA8F0 /* WorkerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F5E8A8260CD33F009FA8F0 /* WorkerHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,13 +83,13 @@
 		7520ED4C263058040045A834 /* RequesterHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterHomeView.swift; sourceTree = "<group>"; };
 		7520ED4E2630582D0045A834 /* RequesterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterDetail.swift; sourceTree = "<group>"; };
 		7520ED50263058D90045A834 /* RequesterCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterCard.swift; sourceTree = "<group>"; };
-		7520ED52263059200045A834 /* RequesterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterList.swift; sourceTree = "<group>"; };
+		7520ED52263059200045A834 /* RequestersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestersList.swift; sourceTree = "<group>"; };
 		7520ED542630595F0045A834 /* Requester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
 		7532425526271C9E009D2C23 /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		7532425726271D4A009D2C23 /* WorkerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCard.swift; sourceTree = "<group>"; };
 		7532425B26271ECF009D2C23 /* WorkersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkersList.swift; sourceTree = "<group>"; };
 		7532425D26271FA9009D2C23 /* WorkerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetail.swift; sourceTree = "<group>"; };
-		75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheHomeView.swift; sourceTree = "<group>"; };
+		75F5E8A8260CD33F009FA8F0 /* WorkerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerHomeView.swift; sourceTree = "<group>"; };
 		949BEBD5F8C5F9379E23DAA9 /* Pods-taskMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.release.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.release.xcconfig"; sourceTree = "<group>"; };
 		BC7595F78214E20B097436CE /* Pods-taskMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskMe.debug.xcconfig"; path = "Target Support Files/Pods-taskMe/Pods-taskMe.debug.xcconfig"; sourceTree = "<group>"; };
 		C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,16 +196,6 @@
 				197E68B82603986500EB47D8 /* ForgotPasswordView.swift */,
 				197E68B42603962500EB47D8 /* LoadImage.swift */,
 				197E68A626024B4A00EB47D8 /* SignUpView.swift */,
-				75F5E8A8260CD33F009FA8F0 /* TheHomeView.swift */,
-				7532425B26271ECF009D2C23 /* WorkersList.swift */,
-				7532425726271D4A009D2C23 /* WorkerCard.swift */,
-				7532425D26271FA9009D2C23 /* WorkerDetail.swift */,
-				7532425526271C9E009D2C23 /* Worker.swift */,
-				7520ED4C263058040045A834 /* RequesterHomeView.swift */,
-				7520ED52263059200045A834 /* RequesterList.swift */,
-				7520ED542630595F0045A834 /* Requester.swift */,
-				7520ED4E2630582D0045A834 /* RequesterDetail.swift */,
-				7520ED50263058D90045A834 /* RequesterCard.swift */,
 				7520ED5626305A2F0045A834 /* worker */,
 				7520ED4B263057CF0045A834 /* requester */,
 			);
@@ -224,6 +214,11 @@
 		7520ED4B263057CF0045A834 /* requester */ = {
 			isa = PBXGroup;
 			children = (
+				7520ED4C263058040045A834 /* RequesterHomeView.swift */,
+				7532425B26271ECF009D2C23 /* WorkersList.swift */,
+				7532425726271D4A009D2C23 /* WorkerCard.swift */,
+				7532425D26271FA9009D2C23 /* WorkerDetail.swift */,
+				7532425526271C9E009D2C23 /* Worker.swift */,
 			);
 			path = requester;
 			sourceTree = "<group>";
@@ -231,6 +226,11 @@
 		7520ED5626305A2F0045A834 /* worker */ = {
 			isa = PBXGroup;
 			children = (
+				75F5E8A8260CD33F009FA8F0 /* WorkerHomeView.swift */,
+				7520ED52263059200045A834 /* RequestersList.swift */,
+				7520ED50263058D90045A834 /* RequesterCard.swift */,
+				7520ED4E2630582D0045A834 /* RequesterDetail.swift */,
+				7520ED542630595F0045A834 /* Requester.swift */,
 			);
 			path = worker;
 			sourceTree = "<group>";
@@ -437,14 +437,14 @@
 				192410B42600DFB30081B220 /* AppDelegate.swift in Sources */,
 				192410B62600DFB30081B220 /* SceneDelegate.swift in Sources */,
 				7532425C26271ECF009D2C23 /* WorkersList.swift in Sources */,
-				7520ED53263059200045A834 /* RequesterList.swift in Sources */,
+				7520ED53263059200045A834 /* RequestersList.swift in Sources */,
 				197E68B72603970C00EB47D8 /* SignInWithEmailView.swift in Sources */,
 				7532425E26271FA9009D2C23 /* WorkerDetail.swift in Sources */,
 				197E68A9260386B000EB47D8 /* UserInfo.swift in Sources */,
 				7520ED4D263058040045A834 /* RequesterHomeView.swift in Sources */,
 				7532425626271C9E009D2C23 /* Worker.swift in Sources */,
 				197E68AF2603882500EB47D8 /* LoginView.swift in Sources */,
-				75F5E8A9260CD33F009FA8F0 /* TheHomeView.swift in Sources */,
+				75F5E8A9260CD33F009FA8F0 /* WorkerHomeView.swift in Sources */,
 				197E68B92603986500EB47D8 /* ForgotPasswordView.swift in Sources */,
 				192410B82600DFB30081B220 /* ContentView.swift in Sources */,
 				7532425826271D4A009D2C23 /* WorkerCard.swift in Sources */,

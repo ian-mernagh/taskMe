@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-struct TheHomeView: View {
+struct WorkerHomeView: View {
     
     @State private var showProfileView = false
     @EnvironmentObject var userInfo : UserInfo
@@ -75,8 +75,8 @@ struct TheHomeView: View {
     }
 
 
-struct TheHomeView_Previews: PreviewProvider {
+struct WorkerHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TheHomeView()
+        WorkerHomeView()
     }
 }
