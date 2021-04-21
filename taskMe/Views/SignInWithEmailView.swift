@@ -17,7 +17,11 @@ struct SignInWithEmailView: View {
     @Binding var action: LoginView.Action?
     
     var body: some View {
+        ZStack{
+            Color.black.edgesIgnoringSafeArea(.all)
         VStack {
+            Text("Task Me").foregroundColor(Color.white).font(.largeTitle)
+            Image("logo")
             TextField("Email Address",
                       text: self.$user.email)
                 .autocapitalization(.none)
@@ -41,7 +45,7 @@ struct SignInWithEmailView: View {
                     Text("Login")
                         .padding(.vertical, 15)
                         .frame(width: 200)
-                        .background(Color.green)
+                        .background(Color("Color1"))
                         .cornerRadius(8)
                         .foregroundColor(.white)
                         .opacity(user.isLogInComplete ? 1 : 0.75)
@@ -53,16 +57,19 @@ struct SignInWithEmailView: View {
                     Text("Sign Up")
                         .padding(.vertical, 15)
                         .frame(width: 200)
-                        .background(Color.blue)
+                        .background(Color("Color2"))
                         .cornerRadius(8)
                         .foregroundColor(.white)
                 }
             }
+            Spacer()
+            Spacer()
+            Spacer()
         }
         .padding(.top, 100)
         .frame(width: 300)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        
+        .textFieldStyle(RoundedBorderTextFieldStyle()).foregroundColor(Color.white)
+        }
     }
 }
 

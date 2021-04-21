@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseStorage
 
 class UserInfo: ObservableObject{
     

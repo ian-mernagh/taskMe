@@ -65,8 +65,6 @@ struct ProfileView: View {
                     let database = Database.database().reference().child("users/\(uid)/photoURL")
                     
                     database.setValue(imageURL.absoluteString)
-                    
-                    
                 }
             }
         }
@@ -131,6 +129,51 @@ struct ProfileView: View {
          database2.setValue(user.isTeen)
          */
     }
+    
+    func loadName(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
+        }
+    }
+    
+    //        func loadIsTeen(){
+    //            guard let uid  = Auth.auth().currentUser?.uid else {return}
+    //            var ref: DatabaseReference!
+    //            ref = Database.database().reference()
+    //            ref.child("users/\(uid)/isTeen").getData { (error, snapshot) in
+    //
+    //            if let error = error {
+    //                print("Error getting data \(error)")
+    //            }
+    //            else if snapshot.exists() {
+    //                self.user.isTeen = String((\(snapshot.value!)))
+    //            }
+    //            }
+    //        }
+    
+    func loadEmail(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/email").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.email = ("\(snapshot.value!)")
+            }
+        }
+    }
     var body: some View {
         VStack{
             Text(user.email)
@@ -157,8 +200,6 @@ struct ProfileView: View {
             
             Button(action: {
                 self.showingImagePicker = true
-                print(self.user.fullname)
-                print(self.user.isTeen)
             }){
                 
                 Text("Change Image")
@@ -173,8 +214,6 @@ struct ProfileView: View {
             Button(action: {
                 try! Auth.auth().signOut()
                 self.userInfo.isUserAuthenticated = .signedOut
-                print(self.user.isTeen)
-                
             }){
                 Text("Sign Out")
                     .frame(width: 200)
@@ -197,6 +236,8 @@ struct ProfileView: View {
             
             ImagePicker(image: self.$inputImage)
         }   .onAppear {
+            self.loadName()
+            self.loadEmail()
             self.loadImage()
         }
     }

@@ -14,6 +14,8 @@ struct ForgotPasswordView: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
+            ZStack{
+            Color.black.edgesIgnoringSafeArea(.all)
             VStack {
                 TextField("Enter email address", text: $user.email).autocapitalization(.none).keyboardType(.emailAddress)
                 Button(action: {
@@ -24,7 +26,7 @@ struct ForgotPasswordView: View {
                     Text("Reset")
                         .frame(width: 200)
                         .padding(.vertical, 15)
-                        .background(Color.green)
+                        .background(Color("Color1"))
                         .cornerRadius(8)
                         .foregroundColor(.white)
                         .opacity(user.isEmailValid(_email: user.email) ? 1 : 0.75)
@@ -38,6 +40,7 @@ struct ForgotPasswordView: View {
                 .navigationBarItems(trailing: Button("Dismiss") {
                     self.presentationMode.wrappedValue.dismiss()
                 })
+        }
         }
     }
 }

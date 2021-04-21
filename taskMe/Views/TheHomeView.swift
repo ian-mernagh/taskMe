@@ -72,7 +72,6 @@ struct TheHomeView: View {
                             self.loadImage()
                             }
                     )
-                    
                 }
             }
         }
