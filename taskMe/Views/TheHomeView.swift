@@ -47,33 +47,7 @@ struct TheHomeView: View {
             ].sorted {$0.name < $1.name}
     var body: some View {
 
-        ZStack{
-            
-            NavigationView{
-                List{
-                    ForEach(workers.indices, id: \.self){
-                        i in
-                        WorkerCard(worker: self.$workers[i], workers: self.$workers)
-                    }
-                }.navigationBarTitle("Workers")
-                    .navigationBarItems(trailing: Button(action: {
-                        self.showProfileView.toggle()
-                    }){
-                        image
-                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
-                    }.sheet(isPresented: $showProfileView){
-                        ProfileView()
-                }.onAppear {
-                    self.loadImage()
-                }
-            )
-
-        HStack{
-            VStack {
-                Image("logo").renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
-                Spacer()
-            }
-            Spacer()
+        
             ZStack{
 
                 
@@ -100,7 +74,7 @@ struct TheHomeView: View {
             }
         }
     }
-}
+
 
 struct TheHomeView_Previews: PreviewProvider {
     static var previews: some View {
