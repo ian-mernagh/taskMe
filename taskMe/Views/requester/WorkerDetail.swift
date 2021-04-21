@@ -20,11 +20,11 @@ struct WorkerDetail: View {
     
     var body: some View {
         VStack{
-            Image(worker.image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .clipShape(Circle())
-                .frame(width: 300, height: 300, alignment: .center)
+//            Image(worker.image)
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//                .clipShape(Circle())
+//                .frame(width: 300, height: 300, alignment: .center)
 
             Text(worker.name)
             Text(String(worker.date.hashValue))

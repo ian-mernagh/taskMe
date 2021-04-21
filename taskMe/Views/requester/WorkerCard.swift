@@ -19,11 +19,11 @@ struct WorkerCard: View {
     var body: some View {
         
         HStack{
-            Image(worker.image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100, alignment: .center)
-                .clipped()
+//            Image(worker.image)
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//                .frame(width: 100, height: 100, alignment: .center)
+//                .clipped()
             NavigationLink(destination: WorkerDetail(worker: $worker, workers: $workers)){
                 VStack(alignment: .leading){
                     Text(worker.name)

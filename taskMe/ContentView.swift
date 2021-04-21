@@ -8,10 +8,27 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct ContentView: View {
     
     @EnvironmentObject var userInfo: UserInfo
+    
+    func isTeen() {
+            guard let uid  = Auth.auth().currentUser?.uid else {return}
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            ref.child("users/\(uid)/isTeen").getData { (error, snapshot) in
+                
+                if let error = error {
+                    print("Error getting data \(error)")
+                }
+                else if snapshot.exists() {
+                    
+                }
+            }
+    }
     
     var body: some View {
         Group{
@@ -21,11 +38,15 @@ struct ContentView: View {
             else if userInfo.isUserAuthenticated == .signedOut{
                 LoginView()
             }
-            else {
+            else if userInfo.isUserAuthenticated == .signedIn {
                RequesterHomeView()
+            }
+            else {
+                
             }
         }.onAppear{
             self.userInfo.configureFirebaseStateDidChange()
+            self.isTeen()
         }
     }
 }

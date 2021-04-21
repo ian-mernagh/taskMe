@@ -35,36 +35,6 @@ struct RequesterHomeView: View {
         }
     }
     
-    func loadName(){
-        guard let uid  = Auth.auth().currentUser?.uid else {return}
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("users/\(uid)/name").getData { (error, snapshot) in
-            
-            if let error = error {
-                print("Error getting data \(error)")
-            }
-            else if snapshot.exists() {
-                self.user.fullname = ("\(snapshot.value!)")
-            }
-        }
-    }
-    
-    func loadEmail(){
-        guard let uid  = Auth.auth().currentUser?.uid else {return}
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("users/\(uid)/email").getData { (error, snapshot) in
-            
-            if let error = error {
-                print("Error getting data \(error)")
-            }
-            else if snapshot.exists() {
-                self.user.email = ("\(snapshot.value!)")
-            }
-        }
-    }
-    
     @State var workers : [Worker] =
         [Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com"),
          Worker(image: "aslan", name: "Aslan", email: "aslan@NewWaveComputers.com"),
@@ -102,8 +72,6 @@ struct RequesterHomeView: View {
                                 ProfileView()
                             }.onAppear {
                                 self.loadImage()
-                                self.loadName()
-                                self.loadEmail()
                                 }
                         )
                     }

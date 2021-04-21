@@ -130,20 +130,50 @@ struct ProfileView: View {
          */
     }
     
-    //        func loadIsTeen(){
-    //            guard let uid  = Auth.auth().currentUser?.uid else {return}
-    //            var ref: DatabaseReference!
-    //            ref = Database.database().reference()
-    //            ref.child("users/\(uid)/isTeen").getData { (error, snapshot) in
-    //
-    //            if let error = error {
-    //                print("Error getting data \(error)")
-    //            }
-    //            else if snapshot.exists() {
-    //                self.user.isTeen = String((\(snapshot.value!)))
-    //            }
-    //            }
-    //        }
+    func loadName(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
+        }
+    }
+    
+    func loadIsTeen(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/isTeen").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.isTeen = snapshot.value as! Bool
+            }
+        }
+    }
+    
+    func loadEmail(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/email").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.email = ("\(snapshot.value!)")
+            }
+        }
+    }
     
     var body: some View {
         ZStack{
@@ -185,8 +215,9 @@ struct ProfileView: View {
                 }.padding()
                 
                 Button(action: {
-                    self.userInfo.isUserAuthenticated = .signedOut
                     try! Auth.auth().signOut()
+                    self.userInfo.isUserAuthenticated = .signedOut
+
                 }){
                     Text("Sign Out")
                         .frame(width: 200)
@@ -196,9 +227,20 @@ struct ProfileView: View {
                         .foregroundColor(.white)
                     
                 }
+                //            if (self.user.isTeen==false) {
+                //                Text("Requester")
+                //            }
+                //            else {
+                //                Text("Worker")
+                //            }
+                //                self.user.isTeen = false
+                //            }
+                
             }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
                 ImagePicker(image: self.$inputImage)
             }   .onAppear {
+                self.loadName()
+                self.loadEmail()
                 self.loadImage()
             }
         }

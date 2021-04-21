@@ -15,11 +15,11 @@ struct WorkersList: View {
     var body: some View {
         List(workers){ worker in
             HStack{
-                Image(worker.image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .clipped()
+//                Image(worker.image)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 100, height: 100, alignment: .center)
+//                    .clipped()
                 
                 VStack(alignment: .leading){
                     Text(worker.name).font(.system(size: 30))
