@@ -15,7 +15,6 @@ struct WorkersList: View {
     var body: some View {
         List(workers){ worker in
             HStack{
-                
                 Image(worker.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -24,9 +23,8 @@ struct WorkersList: View {
                 
                 VStack(alignment: .leading){
                     Text(worker.name).font(.system(size: 30))
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color("Color2"))
                     Text(worker.email)
-                    
                 }
             }.background(Color.white.opacity(0.7))
                 .cornerRadius(20)

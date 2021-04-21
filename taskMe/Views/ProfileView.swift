@@ -130,21 +130,6 @@ struct ProfileView: View {
          */
     }
     
-    func loadName(){
-        guard let uid  = Auth.auth().currentUser?.uid else {return}
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("users/\(uid)/name").getData { (error, snapshot) in
-            
-            if let error = error {
-                print("Error getting data \(error)")
-            }
-            else if snapshot.exists() {
-                self.user.fullname = ("\(snapshot.value!)")
-            }
-        }
-    }
-    
     //        func loadIsTeen(){
     //            guard let uid  = Auth.auth().currentUser?.uid else {return}
     //            var ref: DatabaseReference!
@@ -160,85 +145,62 @@ struct ProfileView: View {
     //            }
     //        }
     
-    func loadEmail(){
-        guard let uid  = Auth.auth().currentUser?.uid else {return}
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("users/\(uid)/email").getData { (error, snapshot) in
-            
-            if let error = error {
-                print("Error getting data \(error)")
-            }
-            else if snapshot.exists() {
-                self.user.email = ("\(snapshot.value!)")
-            }
-        }
-    }
     var body: some View {
-        VStack{
-            Text(user.email)
-                .frame(width: 200)
-                .padding(.vertical, 15)
-                .cornerRadius(8)
-                .foregroundColor(.black)
-            Text(user.fullname)
-                .frame(width: 200)
-                .padding(.vertical, 15)
-                .cornerRadius(8)
-                .foregroundColor(.black)
-            Text(String(user.isTeen))
-                .frame(width: 200)
-                .padding(.vertical, 15)
-                .cornerRadius(8)
-                .foregroundColor(.black)
-            //image
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 200, height: 200, alignment: .center)
-                .clipped()
-            
-            Button(action: {
-                self.showingImagePicker = true
-            }){
-                
-                Text("Change Image")
+        ZStack{
+            Color.black.edgesIgnoringSafeArea(.all)
+            VStack{
+                Text(user.email)
                     .frame(width: 200)
                     .padding(.vertical, 15)
-                    .background(Color.green)
                     .cornerRadius(8)
                     .foregroundColor(.white)
-                
-            }.padding()
-            
-            Button(action: {
-                try! Auth.auth().signOut()
-                self.userInfo.isUserAuthenticated = .signedOut
-            }){
-                Text("Sign Out")
+                Text(user.fullname)
                     .frame(width: 200)
                     .padding(.vertical, 15)
-                    .background(Color.green)
                     .cornerRadius(8)
                     .foregroundColor(.white)
+                Text(String(user.isTeen))
+                    .frame(width: 200)
+                    .padding(.vertical, 15)
+                    .cornerRadius(8)
+                    .foregroundColor(.white)
+                //image
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 200, height: 200, alignment: .center)
+                    .clipped()
                 
+                Button(action: {
+                    self.showingImagePicker = true
+                }){
+                    
+                    Text("Change Image")
+                        .frame(width: 200)
+                        .padding(.vertical, 15)
+                        .background(Color("Color1"))
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                    
+                }.padding()
+                
+                Button(action: {
+                    self.userInfo.isUserAuthenticated = .signedOut
+                    try! Auth.auth().signOut()
+                }){
+                    Text("Sign Out")
+                        .frame(width: 200)
+                        .padding(.vertical, 15)
+                        .background(Color("Color2"))
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                    
+                }
+            }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
+                ImagePicker(image: self.$inputImage)
+            }   .onAppear {
+                self.loadImage()
             }
-            //            if (self.user.isTeen==false) {
-            //                Text("Requester")
-            //            }
-            //            else {
-            //                Text("Worker")
-            //            }
-            //                self.user.isTeen = false
-            //            }
-            
-        }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
-            
-            ImagePicker(image: self.$inputImage)
-        }   .onAppear {
-            self.loadName()
-            self.loadEmail()
-            self.loadImage()
         }
     }
 }

@@ -33,7 +33,7 @@ struct SignInWithEmailView: View {
                     self.action = .resetPW
                     self.showSheet = true
                 }) {
-                    Text("Forgot Password")
+                    Text("Forgot Password").foregroundColor(.white)
                 }
             }.padding(.bottom)
             VStack(spacing: 10) {

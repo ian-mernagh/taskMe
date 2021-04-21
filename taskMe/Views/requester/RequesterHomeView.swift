@@ -35,6 +35,36 @@ struct RequesterHomeView: View {
         }
     }
     
+    func loadName(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
+        }
+    }
+    
+    func loadEmail(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/email").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.email = ("\(snapshot.value!)")
+            }
+        }
+    }
+    
     @State var workers : [Worker] =
         [Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com"),
          Worker(image: "aslan", name: "Aslan", email: "aslan@NewWaveComputers.com"),
@@ -46,32 +76,37 @@ struct RequesterHomeView: View {
          Worker(image: "tyler", name: "Tyler", email: "tyler@NewWaveComputers.com")
             ].sorted {$0.name < $1.name}
     var body: some View {
-        HStack{
-            VStack {
-                Image("logo").renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
+        ZStack{
+            Color.black.edgesIgnoringSafeArea(.all)
+            HStack{
+                VStack {
+                    Image("logo").renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
+                    Spacer()
+                }
                 Spacer()
-            }
-            Spacer()
-            ZStack{
-                
-                NavigationView{
-                    List{
-                        ForEach(workers.indices, id: \.self){
-                            i in
-                            WorkerCard(worker: self.$workers[i], workers: self.$workers)
-                        }
-                    }.navigationBarTitle("Workers Nearby")
-                        .navigationBarItems(trailing: Button(action: {
-                            self.showProfileView.toggle()
-                        }){
-                            image
-                                .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
-                        }.sheet(isPresented: $showProfileView){
-                            ProfileView()
-                        }.onAppear {
-                            self.loadImage()
+                ZStack{
+                    
+                    NavigationView{
+                        List{
+                            ForEach(workers.indices, id: \.self){
+                                i in
+                                WorkerCard(worker: self.$workers[i], workers: self.$workers)
                             }
-                    )
+                        }.navigationBarTitle("Workers Nearby")
+                            .navigationBarItems(trailing: Button(action: {
+                                self.showProfileView.toggle()
+                            }){
+                                image
+                                    .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
+                            }.sheet(isPresented: $showProfileView){
+                                ProfileView()
+                            }.onAppear {
+                                self.loadImage()
+                                self.loadName()
+                                self.loadEmail()
+                                }
+                        )
+                    }
                 }
             }
         }
