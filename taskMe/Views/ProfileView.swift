@@ -133,6 +133,21 @@ struct ProfileView: View {
     }
     var body: some View {
         VStack{
+            Text(user.email)
+                .frame(width: 200)
+                .padding(.vertical, 15)
+                .cornerRadius(8)
+                .foregroundColor(.black)
+            Text(user.fullname)
+                .frame(width: 200)
+                .padding(.vertical, 15)
+                .cornerRadius(8)
+                .foregroundColor(.black)
+            Text(String(user.isTeen))
+                .frame(width: 200)
+                .padding(.vertical, 15)
+                .cornerRadius(8)
+                .foregroundColor(.black)
             //image
             image
                 .resizable()

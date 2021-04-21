@@ -17,6 +17,7 @@ struct WorkerDetail: View {
     
     var types : [String] = ["Friends", "Co-worker", "Business", "Family"]
     
+    
     var body: some View {
         VStack{
             Image(worker.image)
@@ -24,6 +25,10 @@ struct WorkerDetail: View {
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
+            Text(worker.name)
+            Text(String(worker.date.hashValue))
+            Text(String(worker.amount))
+            Text(worker.request)
             }
         }
     }

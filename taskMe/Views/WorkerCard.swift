@@ -7,6 +7,10 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+
 struct WorkerCard: View {
     
     @Binding var worker : Worker
@@ -15,7 +19,6 @@ struct WorkerCard: View {
     var body: some View {
         
         HStack{
-            
             Image(worker.image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
