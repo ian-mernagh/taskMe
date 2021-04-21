@@ -21,7 +21,7 @@ struct ContentView: View {
             else if userInfo.isUserAuthenticated == .signedOut{
                 LoginView()
             }
-            else{
+            else {
                TheHomeView()
             }
         }.onAppear{
