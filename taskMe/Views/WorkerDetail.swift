@@ -24,7 +24,8 @@ struct WorkerDetail: View {
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
-            }
+        }
+        
         }
     }
 

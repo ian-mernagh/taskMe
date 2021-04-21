@@ -54,7 +54,7 @@ struct TheHomeView: View {
                         i in
                         WorkerCard(worker: self.$workers[i], workers: self.$workers)
                     }
-                }.navigationBarTitle("")
+                }.navigationBarTitle("Workers")
                     .navigationBarItems(trailing: Button(action: {
                         self.showProfileView.toggle()
                     }){
