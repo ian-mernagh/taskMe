@@ -16,7 +16,7 @@ class Worker: Identifiable{
     var email : String
     var type: String // Friend, coworker, sibling,
 
-    init(image : String = "default", name : String = "name", email : String = "email",  type : String = "Friend"){
+    init(image : String = "user", name : String = "name", email : String = "email",  type : String = "Friend"){
         self.image = image
         self.name = name
         self.email = email

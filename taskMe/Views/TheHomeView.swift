@@ -7,10 +7,33 @@
 //
 
 import SwiftUI
+import SwiftUI
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct TheHomeView: View {
     
     @State private var showProfileView = false
+    @EnvironmentObject var userInfo : UserInfo
+    @State private var image: Image = Image("user")
+    @State private var inputImage: UIImage?
+    @State private var showingImagePicker = false
+    @State var user: UserViewModel = UserViewModel()
+    
+    func loadImage(){
+          guard let uid  = Auth.auth().currentUser?.uid else {return}
+          
+          let database = Database.database().reference().child("users/\(uid)")
+          
+          database.observeSingleEvent(of: .value) { snapshot in
+              let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+              
+              if let photoURL = postDict["photoURL"]{
+                  self.image = Image(uiImage: LoadImage.loadImage(photoURL as? String))
+              }
+          }
+      }
     
     @State var workers : [Worker] =
         [Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com"),
@@ -35,10 +58,12 @@ struct TheHomeView: View {
                     .navigationBarItems(trailing: Button(action: {
                         self.showProfileView.toggle()
                     }){
-                        Image("user")
-                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
+                        image
+                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
                     }.sheet(isPresented: $showProfileView){
                         ProfileView()
+                }.onAppear {
+                    self.loadImage()
                 }
             )
                 
@@ -47,10 +72,6 @@ struct TheHomeView: View {
         }
     }
 }
-
-
-
-
 
 struct TheHomeView_Previews: PreviewProvider {
     static var previews: some View {
