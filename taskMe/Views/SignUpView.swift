@@ -101,7 +101,9 @@ struct SignUpView: View {
                             guard let uid = Auth.auth().currentUser?.uid else {return}
                             let database2 = Database.database().reference().child("users/\(uid)/")
                             let userObject2 : [String : Any] = ["name" : self.user.fullname, "isTeen" : self.user.isTeen, "email" : self.user.email]
+                          //  let ref: DatabaseReference! = Database.database().reference()
                             database2.setValue(userObject2)
+                          //  database2.setValue(["dog" : "yes"])
                             self.userInfo.configureFirebaseStateDidChange()
                             self.presentationMode.wrappedValue.dismiss()
  
