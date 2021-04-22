@@ -1,14 +1,13 @@
 //
 //  UserInfo.swift
-//  taskMe
+//  Fire Base Set 4 Gao
 //
-//  Created by Ian Mernagh (student LM) on 3/18/21.
-//  Copyright © 2021 Ian Mernagh (student LM). All rights reserved.
+//  Created by Phillip Gao (student LM) on 2/10/21.
+//  Copyright © 2021 Phillip Gao. All rights reserved.
 //
 
 import Foundation
 import FirebaseAuth
-import FirebaseStorage
 
 class UserInfo: ObservableObject{
     
@@ -19,7 +18,7 @@ class UserInfo: ObservableObject{
     @Published var isUserAuthenticated: FBAuthState = .undefined
     
     func configureFirebaseStateDidChange(){
-        if let _ = Auth.auth().currentUser{
+        if Auth.auth().currentUser != nil {
             self.isUserAuthenticated = .signedIn
         }
         else{
@@ -27,4 +26,3 @@ class UserInfo: ObservableObject{
         }
     }
 }
-

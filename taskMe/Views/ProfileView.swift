@@ -241,6 +241,7 @@ struct ProfileView: View {
             }   .onAppear {
                 self.loadName()
                 self.loadEmail()
+                self.loadIsTeen()
                 self.loadImage()
             }
         }

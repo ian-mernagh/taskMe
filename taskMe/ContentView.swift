@@ -14,8 +14,9 @@ import FirebaseDatabase
 struct ContentView: View {
     
     @EnvironmentObject var userInfo: UserInfo
+    @State var isTeen = false
     
-    func isTeen() {
+    func getIsTeen() {
             guard let uid  = Auth.auth().currentUser?.uid else {return}
             var ref: DatabaseReference!
             ref = Database.database().reference()
@@ -25,7 +26,7 @@ struct ContentView: View {
                     print("Error getting data \(error)")
                 }
                 else if snapshot.exists() {
-                    
+//                    self.isTeen = snapshot.value as! Bool
                 }
             }
     }
@@ -38,7 +39,7 @@ struct ContentView: View {
             else if userInfo.isUserAuthenticated == .signedOut{
                 LoginView()
             }
-            else if userInfo.isUserAuthenticated == .signedIn {
+            else if userInfo.isUserAuthenticated == .signedIn && self.isTeen == false{
                RequesterHomeView()
             }
             else {
@@ -46,7 +47,7 @@ struct ContentView: View {
             }
         }.onAppear{
             self.userInfo.configureFirebaseStateDidChange()
-            self.isTeen()
+            self.getIsTeen()
         }
     }
 }

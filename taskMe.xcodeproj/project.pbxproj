@@ -205,8 +205,8 @@
 		197E68B12603897800EB47D8 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				197E68A8260386B000EB47D8 /* UserInfo.swift */,
 				197E68AA2603872C00EB47D8 /* UserViewModel.swift */,
+				197E68A8260386B000EB47D8 /* UserInfo.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
