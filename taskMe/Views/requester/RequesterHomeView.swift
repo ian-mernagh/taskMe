@@ -49,10 +49,7 @@ struct RequesterHomeView: View {
         ZStack{
             Color.black.edgesIgnoringSafeArea(.all)
             HStack{
-                VStack {
-                    Image("logo").renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center)
-                    Spacer()
-                }
+                
                 Spacer()
                 ZStack{
                     
@@ -62,19 +59,34 @@ struct RequesterHomeView: View {
                                 i in
                                 WorkerCard(worker: self.$workers[i], workers: self.$workers)
                             }
-                        }.navigationBarTitle("Workers Nearby")
-                            .navigationBarItems(trailing: Button(action: {
-                                self.showProfileView.toggle()
-                            }){
-                                image
-                                    .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
-                            }.sheet(isPresented: $showProfileView){
-                                ProfileView()
-                            }.onAppear {
-                                self.loadImage()
+                        }.navigationBarTitle(Text("Workers Nearby"),displayMode:.inline)
+                            
+                            .navigationBarItems(leading:
+                                HStack {
+                                    Button(action: {}) {
+                                        Image("logo").renderingMode(.original).resizable().frame(width: 40, height: 40, alignment: .center)
+                                        
+                                    }
+                                }, trailing:
+                                HStack {
+                                    Button(action: {
+                                        self.showProfileView.toggle()
+                                    }){
+                                        image
+                                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
+                                    }.sheet(isPresented: $showProfileView){
+                                        ProfileView()
+                                    }.onAppear {
+                                        self.loadImage()
+                                    }
                                 }
-                        )
-                    }
+                                
+                                
+                                
+                                
+                                
+                                
+                        )}
                 }
             }
         }
@@ -86,3 +98,11 @@ struct RequesterHomeView_Previews: PreviewProvider {
         RequesterHomeView()
     }
 }
+
+
+
+
+
+
+
+

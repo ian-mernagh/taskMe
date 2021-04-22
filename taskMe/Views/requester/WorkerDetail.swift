@@ -23,7 +23,7 @@ struct WorkerDetail: View {
 //            Image(worker.image)
 //                .resizable()
 //                .aspectRatio(contentMode: .fill)
-//                .clipShape(Circle())
+//                .clipShapse(Circle())
 //                .frame(width: 300, height: 300, alignment: .center)
 
             Text(worker.name)

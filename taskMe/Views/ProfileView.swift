@@ -62,9 +62,11 @@ struct ProfileView: View {
                     //unwarp the url object. Return if nil
                     guard let imageURL = url else {return}
                     
-                    let database = Database.database().reference().child("users/\(uid)/photoURL")
+                    let database = Database.database().reference().child("users/\(uid)")
                     
-                    database.setValue(imageURL.absoluteString)
+                   // database.setValue(imageURL.absoluteString)
+                    let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString, "isTeen" : self.user.isTeen, "name" : self.user.fullname, "email" : self.user.email]
+                    database.setValue(userObject)
                 }
             }
         }
@@ -179,27 +181,29 @@ struct ProfileView: View {
         ZStack{
             Color.black.edgesIgnoringSafeArea(.all)
             VStack{
-                Text(user.email)
-                    .frame(width: 200)
-                    .padding(.vertical, 15)
-                    .cornerRadius(8)
+                Text("Profile").frame(width: 200).padding().font(.largeTitle).foregroundColor(Color.white)
+                HStack(alignment: .center){
+                    Text("Name").frame(width: 200)
+                        .padding(.trailing, 4)
                     .foregroundColor(.white)
-                Text(user.fullname)
-                    .frame(width: 200)
-                    .padding(.vertical, 15)
-                    .cornerRadius(8)
+                    VStack() {
+                        TextField(self.user.fullname, text: self.$user.fullname).autocapitalization(.words).foregroundColor(Color.white)
+                    }
+                }
+                HStack(alignment: .center){
+                    Text("Email").frame(width: 200)
+                        .padding(.trailing,4)
                     .foregroundColor(.white)
-                Text(String(user.isTeen))
-                    .frame(width: 200)
-                    .padding(.vertical, 15)
-                    .cornerRadius(8)
-                    .foregroundColor(.white)
+                    VStack() {
+                        TextField(self.user.email, text: self.$user.email).autocapitalization(.words).foregroundColor(Color.white)
+                    }
+                }.padding(.bottom, 5)
                 //image
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 200, height: 200, alignment: .center)
-                    .clipped()
+                    .clipped().padding()
                 
                 Button(action: {
                     self.showingImagePicker = true
@@ -213,12 +217,44 @@ struct ProfileView: View {
                         .foregroundColor(.white)
                     
                 }.padding()
-                
+                VStack() {
+                    Button(action: {
+                        if (self.user.isTeen==false) {
+                            self.user.isTeen = true
+                        }
+                        else if (self.user.isTeen==true) {
+                            self.user.isTeen = false
+                        }
+                    }){
+                        
+                        if(self.user.isTeen==false) {
+                            Text("Requester")
+                                .frame(width: 200)
+                                .padding(.vertical, 15)
+                                .background(Color("Color1"))
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                        }
+                            
+                        else if (self.user.isTeen==true){
+                            Text("Worker")
+                                .frame(width: 200)
+                                .padding(.vertical, 15)
+                                .background(Color("Color2"))
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                        }
+                        
+                    }
+                    
+                }.padding()
+
                 Button(action: {
+                    self.saveImage()
                     try! Auth.auth().signOut()
                     self.userInfo.isUserAuthenticated = .signedOut
-
-                }){
+                    
+                    }){
                     Text("Sign Out")
                         .frame(width: 200)
                         .padding(.vertical, 15)
@@ -226,23 +262,17 @@ struct ProfileView: View {
                         .cornerRadius(8)
                         .foregroundColor(.white)
                     
-                }
-                //            if (self.user.isTeen==false) {
-                //                Text("Requester")
-                //            }
-                //            else {
-                //                Text("Worker")
-                //            }
-                //                self.user.isTeen = false
-                //            }
+                }.padding()
                 
-            }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage ){
+            }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage){
                 ImagePicker(image: self.$inputImage)
             }   .onAppear {
                 self.loadName()
                 self.loadEmail()
                 self.loadIsTeen()
                 self.loadImage()
+            }.onDisappear() {
+                self.saveImage()
             }
         }
     }
