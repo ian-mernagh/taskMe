@@ -64,72 +64,12 @@ struct ProfileView: View {
                     
                     let database = Database.database().reference().child("users/\(uid)")
                     
-                   // database.setValue(imageURL.absoluteString)
+                    // database.setValue(imageURL.absoluteString)
                     let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString, "isTeen" : self.user.isTeen, "name" : self.user.fullname, "email" : self.user.email]
                     database.setValue(userObject)
                 }
             }
         }
-        /*
-         func saveImage(){
-         
-         guard let input = inputImage else {return}
-         //load the selected inage into the Image object on our view
-         image = Image(uiImage: input)
-         
-         //stuff to save the image
-         guard let uid = Auth.auth().currentUser?.uid else {return}
-         
-         //now get a refrence to our storage object
-         let storage = Storage.storage().reference().child("user/\(uid)")
-         
-         //compress and convert image to data
-         guard let imageData = inputImage?.jpegData(compressionQuality: 0.75) else {return}
-         
-         //store our image
-         storage.putData(imageData, metadata: StorageMetadata()) { (metaData, error) in
-         if let _ = metaData{
-         storage.downloadURL { (url, error) in
-         
-         guard let uid = Auth.auth().currentUser?.uid else{return}
-         //unwarp the url object. Return if nil
-         guard let imageURL = url else {return}
-         
-         // get a refrnece to the database object
-         let database = Database.database().reference().child("users/\(uid)")
-         // declare and initize a dictionary
-         //with key photURL and a value that is
-         // our URL
-         let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString, "isTeen" : self.user.isTeen, "name" : self.user.fullname]
-         //put URL in database
-         database.setValue(userObject)
-         /*
-         let database2 = Database.database().reference().child("users/\(uid)/isTeen")
-         let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
-         database2.setValue(userObject2)
-         let database3 = Database.database().reference().child("users/\(uid)/fullName")
-         let userObject3 : [String : String] = ["name" : self.user.fullname]
-         database3.setValue(userObject3)
-         guard let uid = Auth.auth().currentUser?.uid else {return}
-         let database2 = Database.database().reference().child("users/\(uid)/")
-         print(self.user.isTeen)
-         let userObject2 : [String : Bool] = ["isTeen" : self.user.isTeen]
-         database2.setValue(userObject2)
-         print(self.user.fullname)
-         let database3 = Database.database().reference().child("users/\(uid)/")
-         let userObject3 : [String : String] = ["name" : self.user.fullname]
-         database3.setValue(userObject3)
-         self.userInfo.configureFirebaseStateDidChange()
-         self.presentationMode.wrappedValue.dismiss()
-         */
-         }
-         }
-         }
-         */
-        /*
-         let database2 = Database.database().reference().child("users/\(uid)/isTeen")
-         database2.setValue(user.isTeen)
-         */
     }
     
     func loadName(){
@@ -185,7 +125,7 @@ struct ProfileView: View {
                 HStack(alignment: .center){
                     Text("Name").frame(width: 200)
                         .padding(.trailing, 4)
-                    .foregroundColor(.white)
+                        .foregroundColor(.white)
                     VStack() {
                         TextField(self.user.fullname, text: self.$user.fullname).autocapitalization(.words).foregroundColor(Color.white)
                     }
@@ -193,7 +133,7 @@ struct ProfileView: View {
                 HStack(alignment: .center){
                     Text("Email").frame(width: 200)
                         .padding(.trailing,4)
-                    .foregroundColor(.white)
+                        .foregroundColor(.white)
                     VStack() {
                         TextField(self.user.email, text: self.$user.email).autocapitalization(.words).foregroundColor(Color.white)
                     }
@@ -248,13 +188,12 @@ struct ProfileView: View {
                     }
                     
                 }.padding()
-
+                
                 Button(action: {
-                    self.saveImage()
                     try! Auth.auth().signOut()
                     self.userInfo.isUserAuthenticated = .signedOut
                     
-                    }){
+                }){
                     Text("Sign Out")
                         .frame(width: 200)
                         .padding(.vertical, 15)
@@ -263,15 +202,18 @@ struct ProfileView: View {
                         .foregroundColor(.white)
                     
                 }.padding()
-                
-            }.sheet(isPresented: $showingImagePicker, onDismiss: saveImage){
+                Button(action: {
+                    self.saveImage()
+                }) {
+                    Text("Save Changes").foregroundColor(.white).padding().frame(width: 200).cornerRadius(8)
+                }
+            }.sheet(isPresented: $showingImagePicker, onDismiss: self.saveImage){
                 ImagePicker(image: self.$inputImage)
             }   .onAppear {
                 self.loadName()
                 self.loadEmail()
                 self.loadIsTeen()
                 self.loadImage()
-            }.onDisappear() {
                 self.saveImage()
             }
         }

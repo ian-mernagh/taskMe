@@ -56,7 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		192410B02600DFB30081B220 /* taskMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		192410B02600DFB30081B220 /* Task Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		192410B32600DFB30081B220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		192410B52600DFB30081B220 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		192410B72600DFB30081B220 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		192410B12600DFB30081B220 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				192410B02600DFB30081B220 /* taskMe.app */,
+				192410B02600DFB30081B220 /* Task Me.app */,
 				192410C62600DFB50081B220 /* taskMeTests.xctest */,
 				192410D12600DFB50081B220 /* taskMeUITests.xctest */,
 			);
@@ -271,7 +271,7 @@
 			);
 			name = taskMe;
 			productName = taskMe;
-			productReference = 192410B02600DFB30081B220 /* taskMe.app */;
+			productReference = 192410B02600DFB30081B220 /* Task Me.app */;
 			productType = "com.apple.product-type.application";
 		};
 		192410C52600DFB50081B220 /* taskMeTests */ = {
@@ -624,7 +624,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = bigMern.taskMe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Task Me";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -644,7 +644,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = bigMern.taskMe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Task Me";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
