@@ -5,12 +5,12 @@
 //  Created by Ian Mernagh (student LM) on 3/17/21.
 //  Copyright © 2021 Ian Mernagh (student LM). All rights reserved.
 //
-
+ 
 import SwiftUI
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
-
+ 
 struct SignUpView: View {
     
     @EnvironmentObject var userInfo: UserInfo
@@ -18,10 +18,10 @@ struct SignUpView: View {
     @State private var image: Image = Image("user")
     @State private var inputImage: UIImage?
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View {
-        NavigationView {
-            ZStack{
+            NavigationView {
+                ZStack{
                 Color.black.edgesIgnoringSafeArea(.all)
                 VStack {
                     Group {
@@ -91,60 +91,45 @@ struct SignUpView: View {
                     
                     VStack(spacing: 20 ) {
                         Button(action: {
-                            guard let input = self.inputImage else {return}
-                            //load the selected inage into the Image object on our view
-                            self.image = Image(uiImage: input)
-                            guard let uid = Auth.auth().currentUser?.uid else {return}
-                            let storage = Storage.storage().reference().child("user/\(uid)")
-                            
-                            //compress and convert image to data
-                            guard let imageData = self.inputImage?.jpegData(compressionQuality: 0.75) else {return}
-                            
-                            //store our image
-                            storage.putData(imageData, metadata: StorageMetadata()) { (metaData, error) in
-                                if let _ = metaData{
-                                    storage.downloadURL { (url, error) in
-                                        
-                                        guard let uid = Auth.auth().currentUser?.uid else{return}
-                                        //unwarp the url object. Return if nil
-                                        guard let imageURL = url else {return}
-                                        
-                                        let database = Database.database().reference().child("users/\(uid)")
-                                        
-                                        // database.setValue(imageURL.absoluteString)
-                                        let userObject : [String : Any] = ["photoURL" : imageURL.absoluteString, "isTeen" : self.user.isTeen, "name" : self.user.fullname, "email" : self.user.email]
-                                        database.setValue(userObject)
-                                    }
-                                }
+                            Auth.auth().createUser(withEmail: self.user.email, password: self.user.password) { (user, error) in
+                                guard let uid = Auth.auth().currentUser?.uid else {return}
+                                let database2 = Database.database().reference().child("users/\(uid)/")
+                                let userObject2 : [String : Any] = ["name" : self.user.fullname, "isTeen" : self.user.isTeen, "email" : self.user.email]
+                                database2.setValue(userObject2)
+                                self.userInfo.configureFirebaseStateDidChange()
+                                self.presentationMode.wrappedValue.dismiss()
+                                
                             }
-                    }) {
-                        
-                        Text("Register")
-                            .frame(width: 200)
-                            .padding(.vertical, 15)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .foregroundColor(.black)
-                            .opacity(user.isSignInComplete ? 1 : 0.75)
+                            
+                            
+                            
+                        }) {
+                            
+                            Text("Register")
+                                .frame(width: 200)
+                                .padding(.vertical, 15)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .foregroundColor(.black)
+                                .opacity(user.isSignInComplete ? 1 : 0.75)
                         }
-                    .disabled(!user.isSignInComplete)
-                    Spacer()
-                }.padding()
-            }.padding(.top)
-                .navigationBarTitle("Sign Up", displayMode: .inline)
-                .navigationBarItems(trailing: Button("Dismiss") {
-                    self.presentationMode.wrappedValue.dismiss()
-                })
+                        .disabled(!user.isSignInComplete)
+                        Spacer()
+                    }.padding()
+                }.padding(.top)
+                    .navigationBarTitle("Sign Up", displayMode: .inline)
+                    .navigationBarItems(trailing: Button("Dismiss") {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+            }
         }
     }
 }
-}
-
+ 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
     }
     
 }
-
-
+ 
