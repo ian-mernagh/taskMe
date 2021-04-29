@@ -25,11 +25,11 @@ struct RequestersList: View {
                 
                 VStack(alignment: .leading){
                     Text(requester.name).font(.system(size: 30))
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color("Color1"))
                     Text(requester.email)
                     
                 }
-            }.background(Color.white.opacity(0.7))
+            }.background(Color("Color4").opacity(0.7))
                 .cornerRadius(20)
                 .padding(.horizontal, 10)
         }

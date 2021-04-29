@@ -23,10 +23,10 @@ struct WorkersList: View {
                 
                 VStack(alignment: .leading){
                     Text(worker.name).font(.system(size: 30))
-                        .foregroundColor(Color("Color2"))
+                        .foregroundColor(Color("Color1"))
                     Text(worker.email)
                 }
-            }.background(Color.white.opacity(0.7))
+            }.background(Color("Color4").opacity(0.7))
                 .cornerRadius(20)
                 .padding(.horizontal, 10)
         }

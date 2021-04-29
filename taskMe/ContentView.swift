@@ -26,7 +26,7 @@ struct ContentView: View {
                     print("Error getting data \(error)")
                 }
                 else if snapshot.exists() {
-//                    self.isTeen = snapshot.value as! Bool
+                    self.isTeen = snapshot.value as! Bool
                 }
             }
     }
@@ -42,7 +42,10 @@ struct ContentView: View {
             else if userInfo.isUserAuthenticated == .signedIn && self.isTeen == false{
                RequesterHomeView()
             }
-            else {
+            else if userInfo.isUserAuthenticated == .signedIn && self.isTeen == true{
+                WorkerHomeView()
+            }
+            else{
                 
             }
         }.onAppear{

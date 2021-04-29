@@ -49,7 +49,7 @@ struct WorkerHomeView: View {
 
         
             ZStack{
-
+                    Text("Hello")
                 
                 NavigationView{
                     List{
@@ -57,7 +57,7 @@ struct WorkerHomeView: View {
                             i in
                             WorkerCard(worker: self.$workers[i], workers: self.$workers)
                         }
-                    }.navigationBarTitle("Workers Nearby")
+                    }.navigationBarTitle("Requests")
                         .navigationBarItems(trailing: Button(action: {
                             self.showProfileView.toggle()
                         }){
