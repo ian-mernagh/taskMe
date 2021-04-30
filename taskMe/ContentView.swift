@@ -45,7 +45,7 @@ struct ContentView: View {
                RequesterDefaultView()
             }
             else if self.getIsTeen()  && userInfo.isUserAuthenticated == .signedIn && self.isTeen == true{
-                WorkerHomeView()
+                WorkerDefaultView()
             }
             else{
                 
