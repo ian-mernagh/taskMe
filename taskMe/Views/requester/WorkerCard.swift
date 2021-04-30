@@ -37,7 +37,7 @@ struct WorkerCard: View {
                         .foregroundColor(.white)
                         .minimumScaleFactor(0.01)
                         .lineLimit(1)
-                    Text(String(worker.amount)).font(.system(size: 20))
+                    Text("Cost $" + String(worker.amount)).font(.system(size: 20))
                     .foregroundColor(.white)
                     .minimumScaleFactor(0.01)
                     .lineLimit(1)
