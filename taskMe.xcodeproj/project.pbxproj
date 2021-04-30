@@ -17,6 +17,7 @@
 		192410D62600DFB50081B220 /* taskMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192410D52600DFB50081B220 /* taskMeUITests.swift */; };
 		192410E4260242A80081B220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192410E3260242A80081B220 /* GoogleService-Info.plist */; };
 		192C0D7B4D00BCFFFAE3C4F6 /* Pods_taskMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */; };
+		194E3AEA263C32B3008A3A9A /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194E3AE9263C32B3008A3A9A /* NewRequestView.swift */; };
 		197E68A726024B4A00EB47D8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68A626024B4A00EB47D8 /* SignUpView.swift */; };
 		197E68A9260386B000EB47D8 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68A8260386B000EB47D8 /* UserInfo.swift */; };
 		197E68AB2603872C00EB47D8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68AA2603872C00EB47D8 /* UserViewModel.swift */; };
@@ -71,6 +72,7 @@
 		192410D52600DFB50081B220 /* taskMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskMeUITests.swift; sourceTree = "<group>"; };
 		192410D72600DFB50081B220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		192410E3260242A80081B220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		194E3AE9263C32B3008A3A9A /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
 		197E68A626024B4A00EB47D8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		197E68A8260386B000EB47D8 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		197E68AA2603872C00EB47D8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				197E68B82603986500EB47D8 /* ForgotPasswordView.swift */,
 				197E68B42603962500EB47D8 /* LoadImage.swift */,
 				197E68A626024B4A00EB47D8 /* SignUpView.swift */,
+				194E3AE9263C32B3008A3A9A /* NewRequestView.swift */,
 				7520ED5626305A2F0045A834 /* worker */,
 				7520ED4B263057CF0045A834 /* requester */,
 			);
@@ -446,6 +449,7 @@
 				197E68AF2603882500EB47D8 /* LoginView.swift in Sources */,
 				75F5E8A9260CD33F009FA8F0 /* WorkerHomeView.swift in Sources */,
 				197E68B92603986500EB47D8 /* ForgotPasswordView.swift in Sources */,
+				194E3AEA263C32B3008A3A9A /* NewRequestView.swift in Sources */,
 				192410B82600DFB30081B220 /* ContentView.swift in Sources */,
 				7532425826271D4A009D2C23 /* WorkerCard.swift in Sources */,
 				7520ED552630595F0045A834 /* Requester.swift in Sources */,

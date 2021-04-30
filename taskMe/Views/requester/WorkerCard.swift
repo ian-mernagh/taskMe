@@ -19,11 +19,11 @@ struct WorkerCard: View {
     var body: some View {
         
         HStack{
-//            Image(worker.image)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .frame(width: 100, height: 100, alignment: .center)
-//                .clipped()
+            Image(worker.image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 100, height: 100, alignment: .center)
+                .clipped()
             NavigationLink(destination: WorkerDetail(worker: $worker, workers: $workers)){
                 VStack(alignment: .leading){
                     Text(worker.name)
@@ -39,7 +39,7 @@ struct WorkerCard: View {
                 }
             }
         }.background(Color.green.opacity(0.7))
-            .cornerRadius(20)
+            .cornerRadius(10)
             .padding(.horizontal, 10)
     }
     
@@ -47,6 +47,6 @@ struct WorkerCard: View {
 
 struct WorkerCard_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerCard(worker: Binding.constant(Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com")), workers: Binding.constant([Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com")]))
+        WorkerCard(worker: Binding.constant(Worker(image: "user", name: "Ben", email: "BenSmith@NewWaveComputers.com")), workers: Binding.constant([Worker(image: "ben", name: "Ben", email: "BenSmith@NewWaveComputers.com")]))
     }
 }

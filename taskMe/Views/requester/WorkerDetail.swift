@@ -20,11 +20,11 @@ struct WorkerDetail: View {
     
     var body: some View {
         VStack{
-//            Image(worker.image)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .clipShapse(Circle())
-//                .frame(width: 300, height: 300, alignment: .center)
+            Image(worker.image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle())
+                .frame(width: 300, height: 300, alignment: .center)
 
             Text(worker.name)
             Text(String(worker.date.hashValue))
@@ -38,7 +38,7 @@ struct WorkerDetail: View {
 
 struct ContactDetail_Previews: PreviewProvider {
     static var previews: some View {
-       WorkerDetail(worker: Binding.constant(Worker(image: "ben", name: "Ben", email: "ben@ben.ben")), workers: Binding.constant([Worker(image: "ben", name: "Ben", email: "ben@ben.ben")]))
+       WorkerDetail(worker: Binding.constant(Worker(image: "user", name: "Ben", email: "ben@ben.ben")), workers: Binding.constant([Worker(image: "ben", name: "Ben", email: "ben@ben.ben")]))
     }
 }
 

@@ -101,7 +101,9 @@ struct SignUpView: View {
                                 
                             }
                             
-                            
+                            let database3 = Database.database().reference().child("requests/")
+                            let requests : [String] = ["yes", "no"]
+                            database3.setValue(requests)
                             
                         }) {
                             
