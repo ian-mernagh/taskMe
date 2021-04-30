@@ -35,14 +35,14 @@ struct RequesterHomeView: View {
     }
     
     @State var workers : [Worker] =
-        [Worker(image: "user", name: "Ben Lowry", email: "BenSmith@NewWaveComputers.com"),
-         Worker(image: "user", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com"),
-         Worker(image: "user", name: "Humphrey Chan", email: "humphrey@NewWaveComputers.com"),
-         Worker(image: "user", name: "Emily Long", email: "joseph@NewWaveComputers.com"),
-         Worker(image: "user", name: "Abigail Page", email: "kelly@NewWaveComputers.com"),
-         Worker(image: "user", name: "Michael Myers", email: "michael@NewWaveComputers.com"),
-         Worker(image: "user", name: "Prince Phillips", email: "prince@NewWaveComputers.com"),
-         Worker(image: "user", name: "Tyler Patterson", email: "tyler@NewWaveComputers.com")
+        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", amount: 10, request: "Walk my dog"),
+         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", amount: 20, request: "Mow the lawn"),
+         Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", amount: 10, request: "Buy the groceries"),
+         Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", amount: 5, request: ""),
+         Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", amount: 10, request: ""),
+         Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", amount: 10, request: ""),
+         Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", amount: 10, request: ""),
+         Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", amount: 10, request: "")
             ].sorted {$0.name < $1.name}
     var body: some View {
         
@@ -54,14 +54,14 @@ struct RequesterHomeView: View {
                 Spacer()
                 ZStack{
                     
-                    
+    
                     NavigationView{
                         List{
                             ForEach(workers.indices, id: \.self){
                                 i in
                                 WorkerCard(worker: self.$workers[i], workers: self.$workers)
                             }
-                        }.navigationBarTitle(Text("Workers Nearby"))
+                        }.navigationBarTitle(Text("My Requests"))
                             
                             .navigationBarItems(trailing:
                                 HStack {

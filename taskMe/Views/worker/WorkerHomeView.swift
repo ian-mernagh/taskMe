@@ -35,7 +35,7 @@ struct WorkerHomeView: View {
     }
     
     @State var workers : [Worker] =
-         [Worker(image: "user", name: "Ben", email: "BenSmith@NewWaveComputers.com"),
+         [Worker(image: "user", name: "Ben", email: "ben@NewWaveComputers.com"),
                 Worker(image: "user", name: "Aslan", email: "aslan@NewWaveComputers.com"),
                 Worker(image: "user", name: "Humphrey", email: "humphrey@NewWaveComputers.com"),
                 Worker(image: "user", name: "Joseph", email: "joseph@NewWaveComputers.com"),

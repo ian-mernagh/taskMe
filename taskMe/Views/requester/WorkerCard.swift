@@ -32,11 +32,15 @@ struct WorkerCard: View {
                         .font(.system(size: 200))
                         .minimumScaleFactor(0.0001)
                         .lineLimit(1)
-                    Text(worker.email)
-                        .font(.system(size: 200))
+                    Text(worker.request)
+                        .font(.system(size: 20))
                         .foregroundColor(.white)
                         .minimumScaleFactor(0.01)
                         .lineLimit(1)
+                    Text(String(worker.amount)).font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .minimumScaleFactor(0.01)
+                    .lineLimit(1)
                 }
             }
         }.background(Color.green.opacity(0.7))

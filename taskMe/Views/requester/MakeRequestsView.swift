@@ -36,7 +36,7 @@ struct MakeRequestsView: View {
             }
         }
     }
- 
+    
     func loadEmail(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
         var ref: DatabaseReference!
@@ -51,19 +51,32 @@ struct MakeRequestsView: View {
             }
         }
     }
+    func pullRequest(){
+        var ref: DatabaseReference!
+        var requests : [String : Any] = [:]
+        ref = Database.database().reference()
+        ref.child("requests").observeSingleEvent(of: .value, with: { (snapshot) in
+            // .observe to update .observeSingleEvent to get once
+            guard let data : [String : Any] = snapshot.value as? [String : Any] else {return}
+            for (uids, values) in data {
+                guard let uservalues : [String : Any] = values as? [String : Any] else {return}
+                print(uservalues)
+            }
+        })
+    }
     
     func requests(){
-           
-           guard let uid = Auth.auth().currentUser?.uid else {return}
-           
-           
-           let database = Database.database().reference().child("requests/\(uid)")
-           
-           // database.setValue(imageURL.absoluteString)
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        
+        let database = Database.database().reference().child("requests/\(uid)")
+        
+        // database.setValue(imageURL.absoluteString)
         let userObject : [String : Any] = ["name" : self.user.fullname, "job" : job, "description" : description, "price" : price, "email" : self.user.email, "accepted" : false]
-           database.setValue(userObject)
-       }
-
+        database.setValue(userObject)
+    }
+    
     
     var body: some View {
         NavigationView {
@@ -74,23 +87,23 @@ struct MakeRequestsView: View {
                     Group {
                         VStack(alignment: .leading) {
                             TextField("Job", text: self.$job).autocapitalization(.words)
-//                            if !user.validNameText.isEmpty {
-//                                Text(user.validNameText).font(.caption).foregroundColor(.red)
-//                            }
+                            //                            if !user.validNameText.isEmpty {
+                            //                                Text(user.validNameText).font(.caption).foregroundColor(.red)
+                            //                            }
                         }
                         
                         VStack(alignment: .leading) {
                             TextField("Description", text: self.$description).autocapitalization(.none).keyboardType(.emailAddress)
-//                            if !user.validEmailAddressText.isEmpty {
-//                                Text(user.validNameText).font(.caption).foregroundColor(.red)
-//                            }
+                            //                            if !user.validEmailAddressText.isEmpty {
+                            //                                Text(user.validNameText).font(.caption).foregroundColor(.red)
+                            //                            }
                         }
                         
                         VStack(alignment: .leading) {
                             TextField("Price", text: self.$price).autocapitalization(.none).keyboardType(.emailAddress)
-//                            if !user.validEmailAddressText.isEmpty {
-//                                Text(user.validNameText).font(.caption).foregroundColor(.red)
-//                            }
+                            //                            if !user.validEmailAddressText.isEmpty {
+                            //                                Text(user.validNameText).font(.caption).foregroundColor(.red)
+                            //                            }
                         }
                         
                     }.frame(width: 300)
@@ -100,9 +113,8 @@ struct MakeRequestsView: View {
                         Button(action: {
                             self.loadName()
                             self.loadEmail()
-//                            print(self.user.fullname)
-//                            print(self.user.email)
                             self.requests()
+                            self.pullRequest()
                             self.job=""
                             self.description=""
                             self.price=""
@@ -116,15 +128,16 @@ struct MakeRequestsView: View {
                                 .foregroundColor(.black)
                                 .opacity(user.isSignInComplete ? 1 : 0.75)
                         }
+                        //                           .disabled(!user.isSignInComplete)
                         Spacer()
                     }.padding()
                 }.padding(.top)
             }
         } .onAppear {
-                       self.loadName()
-                       self.loadEmail()
-
-                   }
+            self.loadName()
+            self.loadEmail()
+            
+        }
     }
 }
 

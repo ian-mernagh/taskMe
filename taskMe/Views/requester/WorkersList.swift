@@ -24,6 +24,7 @@ struct WorkersList: View {
                     Text(worker.name).font(.system(size: 30))
                         .foregroundColor(.white)
                     Text(worker.email)
+                    Text("Cost " + String(worker.amount))
                 }
             }.background(Color("Color4").opacity(0.7))
                 .cornerRadius(20)
