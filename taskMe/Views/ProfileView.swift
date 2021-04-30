@@ -117,17 +117,7 @@ struct ProfileView: View {
         }
     }
     
-    func requests(){
-        
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        
-        let database = Database.database().reference().child("requests/\(uid)")
-        
-        // database.setValue(imageURL.absoluteString)
-        let userObject : [String : Any] = ["name" : self.user.fullname, "description" : "", "price" : "", "email" : self.user.email, "accepted" : false]
-        database.setValue(userObject)
-    }
+   
     
     func pullresquests(){
         print("called")
@@ -166,7 +156,7 @@ struct ProfileView: View {
                         .padding(.trailing,4)
                         .foregroundColor(.white)
                     VStack() {
-                        TextField(self.user.email, text: self.$user.email).autocapitalization(.words).foregroundColor(Color.white)
+                        TextField(self.user.email, text: self.$user.email).foregroundColor(Color.white)
                     }
                 }.padding(.bottom, 5)
                 //image
@@ -246,7 +236,6 @@ struct ProfileView: View {
                 self.loadIsTeen()
                 self.loadImage()
                 self.saveImage()
-                self.requests()
                 self.pullresquests()
             }
         }

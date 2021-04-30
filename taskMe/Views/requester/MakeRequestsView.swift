@@ -1,8 +1,8 @@
 //
-//  YourRequestsView.swift
+//  SignUpView.swift
 //  taskMe
 //
-//  Created by Ian Mernagh (student LM) on 4/30/21.
+//  Created by Ian Mernagh (student LM) on 3/17/21.
 //  Copyright © 2021 Ian Mernagh (student LM). All rights reserved.
 //
 
@@ -12,83 +12,126 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct MakeRequestsView: View {
-   
-    @State private var showProfileView = false
-    @EnvironmentObject var userInfo : UserInfo
+    
+    @EnvironmentObject var userInfo: UserInfo
+    @State var user: UserViewModel = UserViewModel()
     @State private var image: Image = Image("user")
     @State private var inputImage: UIImage?
-    @State private var showingImagePicker = false
-    @State var user: UserViewModel = UserViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    @State var job : String = ""
+    @State var description : String = ""
+    @State var price : String = ""
     
-    func loadImage(){
+    func loadName(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
-        
-        let database = Database.database().reference().child("users/\(uid)")
-        
-        database.observeSingleEvent(of: .value) { snapshot in
-            let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
             
-            if let photoURL = postDict["photoURL"]{
-                self.image = Image(uiImage: LoadImage.loadImage(photoURL as? String))
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
+        }
+    }
+ 
+    func loadEmail(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/email").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.email = ("\(snapshot.value!)")
             }
         }
     }
     
-    @State var workers : [Worker] =
-        [Worker(image: "user", name: "Ben Lowry", email: "BenSmith@NewWaveComputers.com"),
-         Worker(image: "user", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com"),
-         Worker(image: "user", name: "Humphrey Chan", email: "humphrey@NewWaveComputers.com"),
-         Worker(image: "user", name: "Emily Long", email: "joseph@NewWaveComputers.com"),
-         Worker(image: "user", name: "Abigail Page", email: "kelly@NewWaveComputers.com"),
-         Worker(image: "user", name: "Michael Myers", email: "michael@NewWaveComputers.com"),
-         Worker(image: "user", name: "Prince Phillips", email: "prince@NewWaveComputers.com"),
-         Worker(image: "user", name: "Tyler Patterson", email: "tyler@NewWaveComputers.com")
-            ].sorted {$0.name < $1.name}
+    func requests(){
+           
+           guard let uid = Auth.auth().currentUser?.uid else {return}
+           
+           
+           let database = Database.database().reference().child("requests/\(uid)")
+           
+           // database.setValue(imageURL.absoluteString)
+        let userObject : [String : Any] = ["name" : self.user.fullname, "job" : job, "description" : description, "price" : price, "email" : self.user.email, "accepted" : false]
+           database.setValue(userObject)
+       }
+
+    
     var body: some View {
-        
-        
-        ZStack{
-            Color.black.edgesIgnoringSafeArea(.all)
-            HStack{
-                
-                Spacer()
-                ZStack{
+        NavigationView {
+            ZStack{
+                Color("Color4").edgesIgnoringSafeArea(.all)
+                VStack {
+                    Text("Make Request").frame(width: 500).padding().font(.largeTitle).foregroundColor(Color.white)
+                    Group {
+                        VStack(alignment: .leading) {
+                            TextField("Job", text: self.$job).autocapitalization(.words)
+//                            if !user.validNameText.isEmpty {
+//                                Text(user.validNameText).font(.caption).foregroundColor(.red)
+//                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            TextField("Description", text: self.$description).autocapitalization(.none).keyboardType(.emailAddress)
+//                            if !user.validEmailAddressText.isEmpty {
+//                                Text(user.validNameText).font(.caption).foregroundColor(.red)
+//                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            TextField("Price", text: self.$price).autocapitalization(.none).keyboardType(.emailAddress)
+//                            if !user.validEmailAddressText.isEmpty {
+//                                Text(user.validNameText).font(.caption).foregroundColor(.red)
+//                            }
+                        }
+                        
+                    }.frame(width: 300)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                    
-                    NavigationView{
-                        List{
-                            ForEach(workers.indices, id: \.self){
-                                i in
-                                WorkerCard(worker: self.$workers[i], workers: self.$workers)
-                            }
-                        }.navigationBarTitle(Text("Workers Nearby"))
+                    VStack(spacing: 20 ) {
+                        Button(action: {
+                            self.loadName()
+                            self.loadEmail()
+//                            print(self.user.fullname)
+//                            print(self.user.email)
+                            self.requests()
+                            self.job=""
+                            self.description=""
+                            self.price=""
+                        }) {
                             
-                            .navigationBarItems(trailing:
-                                HStack {
-                                    Button(action: {
-                                        self.showProfileView.toggle()
-                                    }){
-                                        image
-                                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45).padding()
-                                    }.sheet(isPresented: $showProfileView){
-                                        ProfileView()
-                                    }.onAppear {
-                                        self.loadImage()
-                                    }
-                                }
-                                
-                                
-                                
-                                
-                        )}
-                }
+                            Text("Submit")
+                                .frame(width: 200)
+                                .padding(.vertical, 15)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .foregroundColor(.black)
+                                .opacity(user.isSignInComplete ? 1 : 0.75)
+                        }
+                        Spacer()
+                    }.padding()
+                }.padding(.top)
             }
-        }
+        } .onAppear {
+                       self.loadName()
+                       self.loadEmail()
+
+                   }
     }
 }
 
-struct MakeRequestsView_Previews: PreviewProvider {
+struct MakeRequestView_Previews: PreviewProvider {
     static var previews: some View {
         MakeRequestsView()
     }
+    
 }
+
