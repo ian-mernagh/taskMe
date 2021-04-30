@@ -36,14 +36,14 @@ struct RequesterHomeView: View {
     }
     
     @State var workers : [Worker] =
-        [Worker(image: "user", name: "Ben", email: "BenSmith@NewWaveComputers.com"),
-         Worker(image: "user", name: "Aslan", email: "aslan@NewWaveComputers.com"),
-         Worker(image: "user", name: "Humphrey", email: "humphrey@NewWaveComputers.com"),
-         Worker(image: "user", name: "Joseph", email: "joseph@NewWaveComputers.com"),
-         Worker(image: "user", name: "Kelly", email: "kelly@NewWaveComputers.com"),
-         Worker(image: "user", name: "Michael", email: "michael@NewWaveComputers.com"),
-         Worker(image: "user", name: "Prince", email: "prince@NewWaveComputers.com"),
-         Worker(image: "user", name: "Tyler", email: "tyler@NewWaveComputers.com")
+        [Worker(image: "user", name: "Ben Lowry", email: "BenSmith@NewWaveComputers.com"),
+         Worker(image: "user", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com"),
+         Worker(image: "user", name: "Humphrey Chan", email: "humphrey@NewWaveComputers.com"),
+         Worker(image: "user", name: "Emily Long", email: "joseph@NewWaveComputers.com"),
+         Worker(image: "user", name: "Abigail Page", email: "kelly@NewWaveComputers.com"),
+         Worker(image: "user", name: "Michael Myers", email: "michael@NewWaveComputers.com"),
+         Worker(image: "user", name: "Prince Phillips", email: "prince@NewWaveComputers.com"),
+         Worker(image: "user", name: "Tyler Patterson", email: "tyler@NewWaveComputers.com")
             ].sorted {$0.name < $1.name}
     var body: some View {
         
