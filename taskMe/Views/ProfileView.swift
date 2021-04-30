@@ -116,28 +116,7 @@ struct ProfileView: View {
             }
         }
     }
-    
-   
-    
-    func pullresquests(){
-        print("called")
-        var reqs : [String : Any] = ["please" : "work"]
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("requests").observe(.value, with: { (snapshot) in
-            // .observe to update .observeSingleEvent to get once
-            guard let data : [String : Any] = snapshot.value as? [String : Any] else {return}
-            for (uids, values) in data {
-                guard let uservalues : [String] = values as? [String] else {return}
-                guard let reqs = uservalues[1] as? String else {
-                    print("didnt work")
-                    return
-                }
-                print ("worked")
-                print(reqs)
-            }
-        })
-    }
+
     var body: some View {
         ZStack{
             Color("Color4").edgesIgnoringSafeArea(.all)
@@ -236,7 +215,6 @@ struct ProfileView: View {
                 self.loadIsTeen()
                 self.loadImage()
                 self.saveImage()
-                self.pullresquests()
             }
         }
     }
