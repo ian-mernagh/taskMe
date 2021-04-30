@@ -23,6 +23,7 @@ class Requester: Identifiable{
         self.name = name
         self.email = email
         self.type = type
+        self.requests = requests
     }
 }
 
