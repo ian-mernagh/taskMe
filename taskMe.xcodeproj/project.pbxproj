@@ -18,6 +18,7 @@
 		192410E4260242A80081B220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192410E3260242A80081B220 /* GoogleService-Info.plist */; };
 		192C0D7B4D00BCFFFAE3C4F6 /* Pods_taskMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */; };
 		194E3AEA263C32B3008A3A9A /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194E3AE9263C32B3008A3A9A /* NewRequestView.swift */; };
+		194E3AEC263C43EB008A3A9A /* YourRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194E3AEB263C43EB008A3A9A /* YourRequestsView.swift */; };
 		197E68A726024B4A00EB47D8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68A626024B4A00EB47D8 /* SignUpView.swift */; };
 		197E68A9260386B000EB47D8 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68A8260386B000EB47D8 /* UserInfo.swift */; };
 		197E68AB2603872C00EB47D8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E68AA2603872C00EB47D8 /* UserViewModel.swift */; };
@@ -73,6 +74,7 @@
 		192410D72600DFB50081B220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		192410E3260242A80081B220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		194E3AE9263C32B3008A3A9A /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
+		194E3AEB263C43EB008A3A9A /* YourRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourRequestsView.swift; sourceTree = "<group>"; };
 		197E68A626024B4A00EB47D8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		197E68A8260386B000EB47D8 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		197E68AA2603872C00EB47D8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -198,7 +200,6 @@
 				197E68B82603986500EB47D8 /* ForgotPasswordView.swift */,
 				197E68B42603962500EB47D8 /* LoadImage.swift */,
 				197E68A626024B4A00EB47D8 /* SignUpView.swift */,
-				194E3AE9263C32B3008A3A9A /* NewRequestView.swift */,
 				7520ED5626305A2F0045A834 /* worker */,
 				7520ED4B263057CF0045A834 /* requester */,
 			);
@@ -218,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				7520ED4C263058040045A834 /* RequesterHomeView.swift */,
+				194E3AEB263C43EB008A3A9A /* YourRequestsView.swift */,
 				7532425B26271ECF009D2C23 /* WorkersList.swift */,
 				7532425726271D4A009D2C23 /* WorkerCard.swift */,
 				7532425D26271FA9009D2C23 /* WorkerDetail.swift */,
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				75F5E8A8260CD33F009FA8F0 /* WorkerHomeView.swift */,
+				194E3AE9263C32B3008A3A9A /* NewRequestView.swift */,
 				7520ED52263059200045A834 /* RequestersList.swift */,
 				7520ED50263058D90045A834 /* RequesterCard.swift */,
 				7520ED4E2630582D0045A834 /* RequesterDetail.swift */,
@@ -438,6 +441,7 @@
 				197E68AB2603872C00EB47D8 /* UserViewModel.swift in Sources */,
 				197E68B32603960500EB47D8 /* ImagePicker.swift in Sources */,
 				192410B42600DFB30081B220 /* AppDelegate.swift in Sources */,
+				194E3AEC263C43EB008A3A9A /* YourRequestsView.swift in Sources */,
 				192410B62600DFB30081B220 /* SceneDelegate.swift in Sources */,
 				7532425C26271ECF009D2C23 /* WorkersList.swift in Sources */,
 				7520ED53263059200045A834 /* RequestersList.swift in Sources */,
