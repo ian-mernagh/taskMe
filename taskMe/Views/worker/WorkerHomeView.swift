@@ -58,7 +58,6 @@ struct WorkerHomeView: View {
                         }
                     }.navigationBarTitle("Requests")
                         .navigationBarItems(trailing: Button(action: {
-                            self.showProfileView.toggle()
                         }){
                             image
                                 .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
