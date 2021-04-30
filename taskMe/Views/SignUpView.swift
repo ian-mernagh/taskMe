@@ -5,12 +5,12 @@
 //  Created by Ian Mernagh (student LM) on 3/17/21.
 //  Copyright © 2021 Ian Mernagh (student LM). All rights reserved.
 //
- 
+
 import SwiftUI
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
- 
+
 struct SignUpView: View {
     
     @EnvironmentObject var userInfo: UserInfo
@@ -20,8 +20,8 @@ struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-            NavigationView {
-                ZStack{
+        NavigationView {
+            ZStack{
                 Color.black.edgesIgnoringSafeArea(.all)
                 VStack {
                     Group {
@@ -101,10 +101,6 @@ struct SignUpView: View {
                                 
                             }
                             
-                            let database3 = Database.database().reference().child("requests/")
-                            let requests : [String] = ["yes", "no"]
-                            database3.setValue(requests)
-                            
                         }) {
                             
                             Text("Register")
@@ -127,11 +123,10 @@ struct SignUpView: View {
         }
     }
 }
- 
+
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
     }
     
 }
- 
