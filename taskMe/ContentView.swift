@@ -16,33 +16,35 @@ struct ContentView: View {
     @EnvironmentObject var userInfo: UserInfo
     @State var isTeen = false
     
-    func getIsTeen() {
-            guard let uid  = Auth.auth().currentUser?.uid else {return}
+    func getIsTeen() -> Bool{
+            guard let uid  = Auth.auth().currentUser?.uid else {return false}
             var ref: DatabaseReference!
             ref = Database.database().reference()
-            ref.child("users/\(uid)/isTeen").getData { (error, snapshot) in
-                
-                if let error = error {
-                    print("Error getting data \(error)")
-                }
-                else if snapshot.exists() {
-                    self.isTeen = snapshot.value as! Bool
-                }
+        ref.child("users/\(uid)/isTeen").observeSingleEvent(of: .value) { (snapshot) in
+            guard let isTeen = snapshot.value as? Bool else {
+                print("This did not work")
+                return
             }
+            self.isTeen = isTeen
+            
+        }
+     return true
     }
     
     var body: some View {
+       
         Group{
             if userInfo.isUserAuthenticated == .undefined{
+                
                 Text("Loading...")
             }
             else if userInfo.isUserAuthenticated == .signedOut{
                 LoginView()
             }
-            else if userInfo.isUserAuthenticated == .signedIn && self.isTeen == false{
+            else if self.getIsTeen() && userInfo.isUserAuthenticated == .signedIn && self.isTeen == false{
                RequesterHomeView()
             }
-            else if userInfo.isUserAuthenticated == .signedIn && self.isTeen == true{
+            else if self.getIsTeen()  && userInfo.isUserAuthenticated == .signedIn && self.isTeen == true{
                 WorkerHomeView()
             }
             else{
