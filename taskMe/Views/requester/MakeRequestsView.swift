@@ -68,13 +68,20 @@ struct MakeRequestsView: View {
     func requests(){
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        
         let database = Database.database().reference().child("requests/\(uid)")
-        
+         let userObject : [String : Any] = ["name" : self.user.fullname, "job" : job, "description" : description, "price" : price, "email" : self.user.email, "accepted" : false]
+        database.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let currentRequests = snapshot.value as? [Any] else {
+                database.child("0").setValue(userObject)
+                print("there are no current requests")
+                return}
+            print("we made it here")
+            database.child("\(currentRequests.count)").setValue(userObject)
+        })
+                
         // database.setValue(imageURL.absoluteString)
-        let userObject : [String : Any] = ["name" : self.user.fullname, "job" : job, "description" : description, "price" : price, "email" : self.user.email, "accepted" : false]
-        database.setValue(userObject)
+       
+        //database.setValue(userObject)
     }
     
     

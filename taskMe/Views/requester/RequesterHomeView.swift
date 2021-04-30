@@ -19,7 +19,25 @@ struct RequesterHomeView: View {
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
-    
+    func updateWorkers(){
+        Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
+            guard let workers = snapshot.value as? [String: Any] else {return}
+            for(uid, requests) in workers{
+                guard let actualRequests = requests as? [Any] else {return}
+                for reqData in actualRequests{
+                    guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
+                    guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
+                    guard let description = dataWithinEachIndex["description"] as? String else {return}
+                    guard let email = dataWithinEachIndex["email"] as? String else {return}
+                    guard let job = dataWithinEachIndex["job"] as? String else {return}
+                    guard let name = dataWithinEachIndex["name"] as? String else {return}
+                    guard let price = dataWithinEachIndex["price"] as? String else {return}
+                    
+                }
+            }
+            
+        }
+    }
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
         
