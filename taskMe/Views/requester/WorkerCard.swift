@@ -28,12 +28,13 @@ struct WorkerCard: View {
                 VStack(alignment: .leading){
                     Text(worker.name)
                         .font(.system(size: 30))
-                        .foregroundColor(.orange)
+                        .foregroundColor(.white)
                         .font(.system(size: 200))
                         .minimumScaleFactor(0.0001)
                         .lineLimit(1)
                     Text(worker.email)
                         .font(.system(size: 200))
+                        .foregroundColor(.white)
                         .minimumScaleFactor(0.01)
                         .lineLimit(1)
                 }

@@ -119,7 +119,7 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack{
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color("Color4").edgesIgnoringSafeArea(.all)
             VStack{
                 Text("Profile").frame(width: 200).padding().font(.largeTitle).foregroundColor(Color.white)
                 HStack(alignment: .center){

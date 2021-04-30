@@ -46,7 +46,7 @@ struct RequesterHomeView: View {
          Worker(image: "user", name: "Tyler", email: "tyler@NewWaveComputers.com")
             ].sorted {$0.name < $1.name}
     var body: some View {
-       
+        
         
         ZStack{
             Color.black.edgesIgnoringSafeArea(.all)
@@ -54,7 +54,7 @@ struct RequesterHomeView: View {
                 
                 Spacer()
                 ZStack{
-                
+                    
                     
                     NavigationView{
                         List{
@@ -62,18 +62,15 @@ struct RequesterHomeView: View {
                                 i in
                                 WorkerCard(worker: self.$workers[i], workers: self.$workers)
                             }
-                        }.navigationBarTitle(Text("Workers Nearby"),displayMode:.inline)
+                        }.navigationBarTitle(Text("Workers Nearby"))
                             
-                            .navigationBarItems(leading:
-                                HStack {
-                                        Image("logo").renderingMode(.original).resizable().frame(width: 40, height: 40, alignment: .center)
-                                }, trailing:
+                            .navigationBarItems(trailing:
                                 HStack {
                                     Button(action: {
                                         self.showProfileView.toggle()
                                     }){
                                         image
-                                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
+                                            .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45).padding()
                                     }.sheet(isPresented: $showProfileView){
                                         ProfileView()
                                     }.onAppear {
@@ -83,7 +80,7 @@ struct RequesterHomeView: View {
                                 
                                 
                                 
-                            
+                                
                         )}
                 }
             }
