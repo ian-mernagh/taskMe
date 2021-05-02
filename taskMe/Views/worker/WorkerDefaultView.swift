@@ -11,13 +11,13 @@ import SwiftUI
 struct WorkerDefaultView: View {
     var body: some View{
         TabView{
-            WorkerHomeView()
-            .tabItem{
+            MyTasksView()
+                .tabItem{
                 Image(systemName: "house")
             }
-            MakeRequestsView()
+            WorkerHomeView()
                 .tabItem{
-                    Image(systemName: "plus")
+                    Image(systemName: "search")
             }
             ProfileView()
                            .tabItem{

@@ -27,8 +27,7 @@ struct WorkerDetail: View {
                 .frame(width: 300, height: 300, alignment: .center)
 
             Text(worker.name)
-            Text(String(worker.date.hashValue))
-            Text(String(worker.amount))
+            Text(worker.price)
             Text(worker.request)
             }
 

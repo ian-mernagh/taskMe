@@ -143,7 +143,6 @@ struct MakeRequestsView: View {
         } .onAppear {
             self.loadName()
             self.loadEmail()
-            
         }
     }
 }

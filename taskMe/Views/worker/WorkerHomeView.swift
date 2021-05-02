@@ -19,6 +19,7 @@ struct WorkerHomeView: View {
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
+    @State var count = 0
     
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
@@ -34,19 +35,34 @@ struct WorkerHomeView: View {
         }
     }
     
-    @State var workers : [Worker] =
-         [Worker(image: "user", name: "Ben", email: "ben@NewWaveComputers.com"),
-                Worker(image: "user", name: "Aslan", email: "aslan@NewWaveComputers.com"),
-                Worker(image: "user", name: "Humphrey", email: "humphrey@NewWaveComputers.com"),
-                Worker(image: "user", name: "Joseph", email: "joseph@NewWaveComputers.com"),
-                Worker(image: "user", name: "Kelly", email: "kelly@NewWaveComputers.com"),
-                Worker(image: "user", name: "Michael", email: "michael@NewWaveComputers.com"),
-                Worker(image: "user", name: "Prince", email: "prince@NewWaveComputers.com"),
-                Worker(image: "user", name: "Tyler", email: "tyler@NewWaveComputers.com")
-            ].sorted {$0.name < $1.name}
+    @State var workers : [Worker] = []
+
+     func updateWorkers(){
+          guard let currentUser = Auth.auth().currentUser?.uid else {return}
+          Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
+              guard let workers = snapshot.value as? [String: Any] else {return}
+              for(uid, requests) in workers{
+                  guard let actualRequests = requests as? [Any] else {return}
+                  for reqData in actualRequests{
+                      guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
+                      guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
+                      guard let description = dataWithinEachIndex["description"] as? String else {return}
+                      guard let email = dataWithinEachIndex["email"] as? String else {return}
+                      guard let job = dataWithinEachIndex["job"] as? String else {return}
+                      guard let name = dataWithinEachIndex["name"] as? String else {return}
+                      guard let price = dataWithinEachIndex["price"] as? String else {return}
+                      
+                      if self.count == 0{
+                          self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
+                      }
+                  }
+              }
+              self.count+=1
+          }
+      }
+    
     var body: some View {
 
-        
             ZStack{
                     Text("Hello")
                 

@@ -17,7 +17,7 @@
 		192410D62600DFB50081B220 /* taskMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192410D52600DFB50081B220 /* taskMeUITests.swift */; };
 		192410E4260242A80081B220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192410E3260242A80081B220 /* GoogleService-Info.plist */; };
 		192C0D7B4D00BCFFFAE3C4F6 /* Pods_taskMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56B66F39698CFCA33ED3038 /* Pods_taskMe.framework */; };
-		194E3AEA263C32B3008A3A9A /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194E3AE9263C32B3008A3A9A /* NewRequestView.swift */; };
+		194E3AEA263C32B3008A3A9A /* MyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194E3AE9263C32B3008A3A9A /* MyTasksView.swift */; };
 		194E3AEC263C43EB008A3A9A /* MakeRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194E3AEB263C43EB008A3A9A /* MakeRequestsView.swift */; };
 		1966A220263C51BA00D5025E /* RequesterDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966A21F263C51BA00D5025E /* RequesterDefaultView.swift */; };
 		1966A222263C53F700D5025E /* WorkerDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966A221263C53F700D5025E /* WorkerDefaultView.swift */; };
@@ -75,7 +75,7 @@
 		192410D52600DFB50081B220 /* taskMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskMeUITests.swift; sourceTree = "<group>"; };
 		192410D72600DFB50081B220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		192410E3260242A80081B220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		194E3AE9263C32B3008A3A9A /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
+		194E3AE9263C32B3008A3A9A /* MyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTasksView.swift; sourceTree = "<group>"; };
 		194E3AEB263C43EB008A3A9A /* MakeRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRequestsView.swift; sourceTree = "<group>"; };
 		1966A21F263C51BA00D5025E /* RequesterDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterDefaultView.swift; sourceTree = "<group>"; };
 		1966A221263C53F700D5025E /* WorkerDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDefaultView.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 			children = (
 				1966A221263C53F700D5025E /* WorkerDefaultView.swift */,
 				75F5E8A8260CD33F009FA8F0 /* WorkerHomeView.swift */,
-				194E3AE9263C32B3008A3A9A /* NewRequestView.swift */,
+				194E3AE9263C32B3008A3A9A /* MyTasksView.swift */,
 				7520ED52263059200045A834 /* RequestersList.swift */,
 				7520ED50263058D90045A834 /* RequesterCard.swift */,
 				7520ED4E2630582D0045A834 /* RequesterDetail.swift */,
@@ -461,7 +461,7 @@
 				197E68AF2603882500EB47D8 /* LoginView.swift in Sources */,
 				75F5E8A9260CD33F009FA8F0 /* WorkerHomeView.swift in Sources */,
 				197E68B92603986500EB47D8 /* ForgotPasswordView.swift in Sources */,
-				194E3AEA263C32B3008A3A9A /* NewRequestView.swift in Sources */,
+				194E3AEA263C32B3008A3A9A /* MyTasksView.swift in Sources */,
 				192410B82600DFB30081B220 /* ContentView.swift in Sources */,
 				7532425826271D4A009D2C23 /* WorkerCard.swift in Sources */,
 				7520ED552630595F0045A834 /* Requester.swift in Sources */,

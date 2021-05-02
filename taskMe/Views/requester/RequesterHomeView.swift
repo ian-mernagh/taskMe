@@ -19,7 +19,36 @@ struct RequesterHomeView: View {
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
+    @State var count = 0
+    
+    @State var workers : [Worker] =
+        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog"),
+         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", price: "20.00", request: "Mow the lawn"),
+           Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", price: "10.00", request: "Buy the groceries"),
+           Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", price: "5.00", request: "Carpool my son"),
+           Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", price: "30.00", request: "Tutor my daughter"),
+           Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", price: "2.50", request: "Water my plants"),
+           Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", price: "15.00", request: "Wash the car"),
+           Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", price: "2.50", request: "Take out the trash")
+              ]
+    
+    func loadName(){
+          guard let uid  = Auth.auth().currentUser?.uid else {return}
+          var ref: DatabaseReference!
+          ref = Database.database().reference()
+          ref.child("users/\(uid)/name").getData { (error, snapshot) in
+              
+              if let error = error {
+                  print("Error getting data \(error)")
+              }
+              else if snapshot.exists() {
+                  self.user.fullname = ("\(snapshot.value!)")
+              }
+          }
+      }
+    
     func updateWorkers(){
+        guard let currentUser = Auth.auth().currentUser?.uid else {return}
         Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
             guard let workers = snapshot.value as? [String: Any] else {return}
             for(uid, requests) in workers{
@@ -33,11 +62,15 @@ struct RequesterHomeView: View {
                     guard let name = dataWithinEachIndex["name"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
+                    if uid == currentUser && self.count == 0{
+                        self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
+                    }
                 }
             }
-            
+            self.count+=1
         }
     }
+    
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
         
@@ -52,21 +85,10 @@ struct RequesterHomeView: View {
         }
     }
     
-    @State var workers : [Worker] =
-        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", amount: 10, request: "Walk my dog"),
-         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", amount: 20, request: "Mow the lawn"),
-         Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", amount: 10, request: "Buy the groceries"),
-         Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", amount: 5, request: "Carpool my son"),
-         Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", amount: 30, request: "Tutor my daughter"),
-         Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", amount: 2.5, request: "Water my plants"),
-         Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", amount: 15, request: "Wash the car"),
-         Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", amount: 2.5, request: "Take out the trash")
-            ].sorted {$0.name < $1.name}
     var body: some View {
         
         
         ZStack{
-            Color.black.edgesIgnoringSafeArea(.all)
             HStack{
                 
                 Spacer()
@@ -91,12 +113,22 @@ struct RequesterHomeView: View {
                                         ProfileView()
                                     }.onAppear {
                                         self.loadImage()
+                                        self.loadName()
+                                        self.updateWorkers()
+                                    }.onDisappear {
+                                        self.workers =
+                                        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog"),
+                                         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", price: "20.00", request: "Mow the lawn"),
+                                           Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", price: "10.00", request: "Buy the groceries"),
+                                           Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", price: "5.00", request: "Carpool my son"),
+                                           Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", price: "30.00", request: "Tutor my daughter"),
+                                           Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", price: "2.50", request: "Water my plants"),
+                                           Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", price: "15.00", request: "Wash the car"),
+                                           Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", price: "2.50", request: "Take out the trash")
+                                              ]
+                                        self.count = 0
                                     }
                                 }
-                                
-                                
-                                
-                                
                         )}
                 }
             }

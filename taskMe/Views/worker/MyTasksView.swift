@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct NewRequestView: View {
+struct MyTasksView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, World!")
     }
 }
 
-struct NewRequestView_Previews: PreviewProvider {
+struct MyTasksView_Previews: PreviewProvider {
     static var previews: some View {
-        NewRequestView()
+        MyTasksView()
     }
 }

@@ -18,17 +18,17 @@ class Worker: Identifiable{
     var type: String // Friend, coworker, sibling,
     var requester : String
     var date : Date
-    var amount : Double
+    var price : String
     var request : String
 
-    init(image : String = "user", name : String = "name", email : String = "email",  type : String = "Friend", requester : String = "Fred", date : Date = Date(), amount : Double = 10, request : String = "Wash my car"){
+    init(image : String = "user", name : String = "name", email : String = "email",  type : String = "Friend", requester : String = "Fred", date : Date = Date(), price : String = "10", request : String = "Wash my car"){
         self.image = image
         self.name = name
         self.email = email
         self.type = type
         self.requester = requester
         self.date = date
-        self.amount = amount
+        self.price = price
         self.request = request
     }
 }
