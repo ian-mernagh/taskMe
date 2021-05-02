@@ -14,9 +14,7 @@ struct WorkerDetail: View {
     @Binding var workers : [Worker]
     @Environment(\.presentationMode) var presentation
     var isAddContact : Bool = true
-    
-    var types : [String] = ["Friends", "Co-worker", "Business", "Family"]
-    
+        
     
     var body: some View {
         VStack{
@@ -25,10 +23,10 @@ struct WorkerDetail: View {
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
-
             Text(worker.name)
             Text(worker.price)
             Text(worker.request)
+            
             }
 
         }

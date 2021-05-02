@@ -26,7 +26,7 @@ struct WorkersList: View {
                     Text(worker.email)
                     Text("Cost $" + worker.price)
                 }
-            }.background(Color("Color4").opacity(0.7))
+            }.background(Color.green.opacity(0.7))
                 .cornerRadius(20)
                 .padding(.horizontal, 10)
         }

@@ -20,8 +20,9 @@ class Worker: Identifiable{
     var date : Date
     var price : String
     var request : String
+    var description : String
 
-    init(image : String = "user", name : String = "name", email : String = "email",  type : String = "Friend", requester : String = "Fred", date : Date = Date(), price : String = "10", request : String = "Wash my car"){
+    init(image : String = "user", name : String = "name", email : String = "email",  type : String = "Friend", requester : String = "Fred", date : Date = Date(), price : String = "10", request : String = "Wash my car", description : String = "I need my car washed by the end of the day."){
         self.image = image
         self.name = name
         self.email = email
@@ -30,5 +31,6 @@ class Worker: Identifiable{
         self.date = date
         self.price = price
         self.request = request
+        self.description = description
     }
 }

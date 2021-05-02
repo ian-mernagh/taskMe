@@ -38,7 +38,6 @@ struct WorkerHomeView: View {
     @State var workers : [Worker] = []
     
     func updateWorkers(){
-        guard let currentUser = Auth.auth().currentUser?.uid else {return}
         Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
             guard let workers = snapshot.value as? [String: Any] else {return}
             for(uid, requests) in workers{
@@ -47,13 +46,13 @@ struct WorkerHomeView: View {
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                     guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
-                    guard let email = dataWithinEachIndex["email"] as? String else {return}
+                    guard let email = dataWithinEachIndex["requesterEmail"] as? String else {return}
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
-                    guard let name = dataWithinEachIndex["name"] as? String else {return}
+                    guard let name = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if self.count == 0{
-                        self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
+                    if self.count == 0 && accepted == false{
+                        self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description: description))
                     }
                 }
             }
@@ -63,22 +62,18 @@ struct WorkerHomeView: View {
     
     var body: some View {
         
-        ZStack{
-            Text("Hello")
-            
+        ZStack{            
             NavigationView{
                 List{
                     ForEach(workers.indices, id: \.self){
                         i in
-                        WorkerCard(worker: self.$workers[i], workers: self.$workers)
+                        RequesterCard(worker: self.$workers[i], workers: self.$workers)
                     }
                 }.navigationBarTitle("Requests")
                     .navigationBarItems(trailing: Button(action: {
                     }){
                         image
                             .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
-                    }.sheet(isPresented: $showProfileView){
-                        ProfileView()
                     }.onAppear {
                         self.loadImage()
                         self.updateWorkers()

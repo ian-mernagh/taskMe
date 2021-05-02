@@ -29,7 +29,7 @@ struct RequestersList: View {
                     Text(requester.email)
                     
                 }
-            }.background(Color("Color4").opacity(0.7))
+            }.background(Color.green.opacity(0.7))
                 .cornerRadius(20)
                 .padding(.horizontal, 10)
         }

@@ -51,25 +51,13 @@ struct MakeRequestsView: View {
             }
         }
     }
-    func pullRequest(){
-        var ref: DatabaseReference!
-        var requests : [String : Any] = [:]
-        ref = Database.database().reference()
-        ref.child("requests").observeSingleEvent(of: .value, with: { (snapshot) in
-            // .observe to update .observeSingleEvent to get once
-            guard let data : [String : Any] = snapshot.value as? [String : Any] else {return}
-            for (uids, values) in data {
-                guard let uservalues : [String : Any] = values as? [String : Any] else {return}
-                print(uservalues)
-            }
-        })
-    }
+    
     
     func requests(){
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let database = Database.database().reference().child("requests/\(uid)")
-         let userObject : [String : Any] = ["name" : self.user.fullname, "job" : job, "description" : description, "price" : price, "email" : self.user.email, "accepted" : false]
+        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email, "workerName" : "", "workerEmail" : "", "job" : job, "description" : description, "price" : price,  "accepted" : false]
         database.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let currentRequests = snapshot.value as? [Any] else {
                 database.child("0").setValue(userObject)
@@ -121,7 +109,6 @@ struct MakeRequestsView: View {
                             self.loadName()
                             self.loadEmail()
                             self.requests()
-                            self.pullRequest()
                             self.job=""
                             self.description=""
                             self.price=""
