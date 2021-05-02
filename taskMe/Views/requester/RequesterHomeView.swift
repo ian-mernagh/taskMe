@@ -62,8 +62,11 @@ struct RequesterHomeView: View {
                     guard let name = dataWithinEachIndex["name"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if uid == currentUser && self.count == 0{
+                    if uid == currentUser && self.count == 0 && accepted==false{
                         self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
+                    }
+                    else if uid == currentUser && self.count == 0 && accepted==true{
+//                        append with the profile picture and name of the worker
                     }
                 }
             }
