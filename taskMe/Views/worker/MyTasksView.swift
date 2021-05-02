@@ -7,6 +7,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct MyTasksView: View {
     var body: some View {

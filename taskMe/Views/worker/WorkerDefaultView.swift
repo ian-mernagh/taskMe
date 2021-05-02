@@ -17,7 +17,7 @@ struct WorkerDefaultView: View {
             }
             WorkerHomeView()
                 .tabItem{
-                    Image(systemName: "search")
+                    Image(systemName: "plus")
             }
             ProfileView()
                            .tabItem{
