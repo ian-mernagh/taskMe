@@ -20,7 +20,8 @@ struct ContentView: View {
             guard let uid  = Auth.auth().currentUser?.uid else {return false}
             var ref: DatabaseReference!
             ref = Database.database().reference()
-        ref.child("users/\(uid)/isTeen").observeSingleEvent(of: .value) { (snapshot) in
+       // ref.child("users/\(uid)/isTeen").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("users/\(uid)/isTeen").observe(DataEventType.value) { (snapshot) in
             guard let isTeen = snapshot.value as? Bool else {
                 print("This did not work")
                 return
