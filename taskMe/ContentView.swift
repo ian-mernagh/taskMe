@@ -17,10 +17,9 @@ struct ContentView: View {
     @State var isTeen = false
     
     func getIsTeen() -> Bool{
-            guard let uid  = Auth.auth().currentUser?.uid else {return false}
-            var ref: DatabaseReference!
-            ref = Database.database().reference()
-       // ref.child("users/\(uid)/isTeen").observeSingleEvent(of: .value) { (snapshot) in
+        guard let uid  = Auth.auth().currentUser?.uid else {return false}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
         ref.child("users/\(uid)/isTeen").observe(DataEventType.value) { (snapshot) in
             guard let isTeen = snapshot.value as? Bool else {
                 print("This did not work")
@@ -29,11 +28,11 @@ struct ContentView: View {
             self.isTeen = isTeen
             
         }
-     return true
+        return true
     }
     
     var body: some View {
-       
+        
         Group{
             if userInfo.isUserAuthenticated == .undefined{
                 
@@ -43,7 +42,7 @@ struct ContentView: View {
                 LoginView()
             }
             else if self.getIsTeen() && userInfo.isUserAuthenticated == .signedIn && self.isTeen == false{
-               RequesterDefaultView()
+                RequesterDefaultView()
             }
             else if self.getIsTeen()  && userInfo.isUserAuthenticated == .signedIn && self.isTeen == true{
                 WorkerDefaultView()
