@@ -116,7 +116,7 @@ struct ProfileView: View {
             }
         }
     }
-
+    
     var body: some View {
         ZStack{
             Color("Color4").edgesIgnoringSafeArea(.all)
@@ -203,7 +203,17 @@ struct ProfileView: View {
                     
                 }.padding()
                 Button(action: {
-                    self.saveImage()
+                    // self.saveImage()
+                    guard let uid = Auth.auth().currentUser?.uid else{return}
+                    //unwarp the url object. Return if nil
+                    
+                    let database = Database.database().reference().child("users/\(uid)/isTeen")
+                    let database2 = Database.database().reference().child("users/\(uid)/name")
+                    let database3 = Database.database().reference().child("users/\(uid)/email")
+                    
+                    database.setValue(self.user.isTeen)
+                    database2.setValue(self.user.fullname)
+                    database3.setValue(self.user.email)
                 }) {
                     Text("Save Changes").foregroundColor(.white).padding().frame(width: 200).cornerRadius(8)
                 }
