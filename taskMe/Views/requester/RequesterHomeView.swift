@@ -50,10 +50,10 @@ struct RequesterHomeView: View {
     
     func updateWorkers(){
         guard let currentUser = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
-            guard let workers = snapshot.value as? [String: Any] else {return}
-            for(uid, requests) in workers{
-                guard let actualRequests = requests as? [Any] else {return}
+        Database.database().reference().child("requests/\(currentUser)").observeSingleEvent(of: .value) { (snapshot) in
+//            guard let workers = snapshot.value as? [String: Any] else {return}
+//            for(uid, requests) in workers{
+            guard let actualRequests = snapshot.value as? [Any] else {return}
                 for reqData in actualRequests{
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                     guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
@@ -63,16 +63,16 @@ struct RequesterHomeView: View {
                     guard let name = dataWithinEachIndex["workerName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if uid == currentUser && accepted==false{
+                    if accepted==false{
                         self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
                         self.count+=1
                     }
-                    else if uid == currentUser && accepted==true{
+                    else if accepted==true{
                         self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description : description))
                         self.count+=1
                     }
                 }
-            }
+//            }
     
         }
     }

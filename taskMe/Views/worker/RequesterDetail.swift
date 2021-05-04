@@ -26,11 +26,12 @@ struct RequesterDetail: View {
     @State var user: UserViewModel = UserViewModel()
     
     func acceptRequest(){
-        Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
+        Database.database().reference().child("requests").observeSingleEvent(of: .value) { (snapshot) in
             guard let workers = snapshot.value as? [String: Any] else {return}
             for(uid, requests) in workers{
                 guard let actualRequests = requests as? [Any] else {return}
-                for reqData in actualRequests{
+                for i in 0...actualRequests.count-1{
+                    let reqData = actualRequests[i]
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                     guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
@@ -42,15 +43,17 @@ struct RequesterDetail: View {
                     if job == self.worker.request{
                         guard let uid = Auth.auth().currentUser?.uid else {return}
                         let database = Database.database().reference().child("requests/\(uid)")
-                        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email, "workerName" : "", "workerEmail" : "", "job" : job, "description" : description, "price" : price,  "accepted" : false]
-                        database.observeSingleEvent(of: .value, with: { (snapshot) in
-                            guard let currentRequests = snapshot.value as? [Any] else {
-                                database.child("0").setValue(userObject)
-                                print("there are no current requests")
-                                return}
-                            print("we made it here")
-                            database.child("\(currentRequests.count)").setValue(userObject)
-                        })
+                        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email, "workerName" : "", "workerEmail" : "", "job" : job, "description" : description, "price" : price,  "accepted" : true]
+                        
+                        database.child("\(i)").setValue(userObject)
+//                        database.observeSingleEvent(of: .value, with: { (snapshot) in
+//                            guard let currentRequests = snapshot.value as? [Any] else {
+//                                database.child("\(i)").setValue(userObject)
+//                                print("there are no current requests")
+//                                return}
+//                            print("we made it here")
+//                            database.child("\(currentRequests.count)").setValue(userObject)
+//                        })
                         
                     }
                 }
@@ -69,7 +72,7 @@ struct RequesterDetail: View {
             Text(worker.price)
             Text(worker.request)
             Button(action: {
-                //self.acceptRequest()
+                self.acceptRequest()
                 print(self.worker.request)
                 
             }) {
