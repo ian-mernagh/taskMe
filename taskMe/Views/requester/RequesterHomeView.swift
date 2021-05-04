@@ -20,6 +20,7 @@ struct RequesterHomeView: View {
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
     @State var count = 0
+    @State var didAppear = false
     
     @State var workers : [Worker] =
         [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog"),
@@ -62,15 +63,17 @@ struct RequesterHomeView: View {
                     guard let name = dataWithinEachIndex["workerName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if uid == currentUser && self.count == 0 && accepted==false{
+                    if uid == currentUser && accepted==false{
                         self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
+                        self.count+=1
                     }
-                    else if uid == currentUser && self.count == 0 && accepted==true{
+                    else if uid == currentUser && accepted==true{
                         self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description : description))
+                        self.count+=1
                     }
                 }
             }
-            self.count+=1
+    
         }
     }
     
@@ -109,21 +112,25 @@ struct RequesterHomeView: View {
                                             .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45).padding()
 
                                     }.onAppear {
-                                        self.loadImage()
-                                        self.loadName()
-                                        self.updateWorkers()
+                                        if !self.didAppear{
+                                            self.loadImage()
+                                            self.loadName()
+                                            print("My guyyy be appearing once!")
+                                            self.updateWorkers()
+                                            self.didAppear = true
+                                        }
                                     }.onDisappear {
-                                        self.workers =
-                                        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog"),
-                                         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", price: "20.00", request: "Mow the lawn"),
-                                           Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", price: "10.00", request: "Buy the groceries"),
-                                           Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", price: "5.00", request: "Carpool my son"),
-                                           Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", price: "30.00", request: "Tutor my daughter"),
-                                           Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", price: "2.50", request: "Water my plants"),
-                                           Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", price: "15.00", request: "Wash the car"),
-                                           Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", price: "2.50", request: "Take out the trash")
-                                              ]
-                                        self.count = 0
+//                                        self.workers =
+//                                        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog"),
+//                                         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", price: "20.00", request: "Mow the lawn"),
+//                                           Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", price: "10.00", request: "Buy the groceries"),
+//                                           Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", price: "5.00", request: "Carpool my son"),
+//                                           Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", price: "30.00", request: "Tutor my daughter"),
+//                                           Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", price: "2.50", request: "Water my plants"),
+//                                           Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", price: "15.00", request: "Wash the car"),
+//                                           Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", price: "2.50", request: "Take out the trash")
+//                                              ]
+//                                        self.count = 0
                                     }
                                 }
                         )}
