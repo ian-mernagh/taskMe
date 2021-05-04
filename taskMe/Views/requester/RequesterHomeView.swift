@@ -50,7 +50,7 @@ struct RequesterHomeView: View {
     
     func updateWorkers(){
         guard let currentUser = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("requests/\(currentUser)").observeSingleEvent(of: .value) { (snapshot) in
+        Database.database().reference().child("requests/\(currentUser)").observe(.value) { (snapshot) in
 //            guard let workers = snapshot.value as? [String: Any] else {return}
 //            for(uid, requests) in workers{
             guard let actualRequests = snapshot.value as? [Any] else {return}

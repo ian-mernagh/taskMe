@@ -25,6 +25,35 @@ struct RequesterDetail: View {
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
     
+    func loadName(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
+        }
+    }
+    
+    func loadEmail(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/email").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.email = ("\(snapshot.value!)")
+            }
+        }
+    }
     func acceptRequest(){
         Database.database().reference().child("requests").observeSingleEvent(of: .value) { (snapshot) in
             guard let workers = snapshot.value as? [String: Any] else {return}
@@ -33,7 +62,7 @@ struct RequesterDetail: View {
                 for i in 0...actualRequests.count-1{
                     let reqData = actualRequests[i]
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
-                    guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
+    //                guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
                     guard let email = dataWithinEachIndex["requesterEmail"] as? String else {return}
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
@@ -43,7 +72,7 @@ struct RequesterDetail: View {
                     if job == self.worker.request{
                         guard let uid = Auth.auth().currentUser?.uid else {return}
                         let database = Database.database().reference().child("requests/\(uid)")
-                        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email, "workerName" : "", "workerEmail" : "", "job" : job, "description" : description, "price" : price,  "accepted" : true]
+                        let userObject : [String : Any] = ["requesterName" : name, "requesterEmail" : email, "workerName" : self.user.fullname, "workerEmail" : self.user.email, "job" : job, "description" : description, "price" : price,  "accepted" : true]
                         
                         database.child("\(i)").setValue(userObject)
 //                        database.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -72,6 +101,8 @@ struct RequesterDetail: View {
             Text(worker.price)
             Text(worker.request)
             Button(action: {
+                self.loadName()
+                self.loadEmail()
                 self.acceptRequest()
                 print(self.worker.request)
                 

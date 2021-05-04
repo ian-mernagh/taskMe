@@ -19,7 +19,7 @@ struct MyTasksView: View {
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @State var user: UserViewModel = UserViewModel()
-    @State var count = 0
+    @State var didAppear = false
     
     @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
     
@@ -66,12 +66,11 @@ struct MyTasksView: View {
                     guard let name = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if self.count == 0 && accepted == true && self.user.fullname==name{
+                    if accepted == true && self.user.fullname==name{
                         self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description: description))
                     }
                 }
             }
-            self.count+=1
         }
     }
     
@@ -90,8 +89,12 @@ struct MyTasksView: View {
                         image
                             .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
                     }.onAppear {
-                        self.loadImage()
-                        self.updateWorkers()
+                        if !self.didAppear{
+                            self.didAppear = true
+                            self.workers = []
+                            self.loadImage()
+                            self.updateWorkers()
+                        }
                     }.onDisappear {
                         }
                 )
