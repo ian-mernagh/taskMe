@@ -21,7 +21,7 @@ struct MyTasksView: View {
     @State var user: UserViewModel = UserViewModel()
     @State var count = 0
     
-    @State var workers : [Worker] = []
+    @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
     
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
@@ -66,7 +66,7 @@ struct MyTasksView: View {
                     guard let name = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if self.count == 0 && accepted == false && self.user.fullname==name{
+                    if self.count == 0 && accepted == true && self.user.fullname==name{
                         self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description: description))
                     }
                 }
@@ -93,8 +93,6 @@ struct MyTasksView: View {
                         self.loadImage()
                         self.updateWorkers()
                     }.onDisappear {
-                        self.workers = []
-                        self.count = 0
                         }
                 )
             }

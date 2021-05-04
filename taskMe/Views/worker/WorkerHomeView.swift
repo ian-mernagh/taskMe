@@ -35,7 +35,7 @@ struct WorkerHomeView: View {
         }
     }
     
-    @State var workers : [Worker] = []
+    @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
     
     func updateWorkers(){
         Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
@@ -78,8 +78,7 @@ struct WorkerHomeView: View {
                         self.loadImage()
                         self.updateWorkers()
                     }.onDisappear {
-                        self.workers = []
-                        self.count = 0
+                    
                         }
                 )
             }
