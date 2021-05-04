@@ -42,7 +42,16 @@ struct RequesterDetail: View {
                     if job == self.worker.request{
                         guard let uid = Auth.auth().currentUser?.uid else {return}
                         let database = Database.database().reference().child("requests/\(uid)")
-                        let userObject : [String : Any] = ["requesterName" : name, "requesterEmail" : email, "workerName" : self.user.fullname, "workerEmail" : self.user.email, "job" : job, "description" : description, "price" : price,  "accepted" : true]
+                        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email, "workerName" : "", "workerEmail" : "", "job" : job, "description" : description, "price" : price,  "accepted" : false]
+                        database.observeSingleEvent(of: .value, with: { (snapshot) in
+                            guard let currentRequests = snapshot.value as? [Any] else {
+                                database.child("0").setValue(userObject)
+                                print("there are no current requests")
+                                return}
+                            print("we made it here")
+                            database.child("\(currentRequests.count)").setValue(userObject)
+                        })
+                        
                     }
                 }
             }
@@ -60,7 +69,9 @@ struct RequesterDetail: View {
             Text(worker.price)
             Text(worker.request)
             Button(action: {
-                self.acceptRequest()
+                //self.acceptRequest()
+                print(self.worker.request)
+                
             }) {
                 Text("Accept Request")
                     .frame(width: 200)
