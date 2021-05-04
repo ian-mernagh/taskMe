@@ -66,7 +66,7 @@ struct MyTasksView: View {
                     guard let name = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if self.count == 0 && accepted == false && self.user.fullname==name{
+                    if self.count == 0 && accepted == true && self.user.fullname==name{
                         self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description: description))
                     }
                 }

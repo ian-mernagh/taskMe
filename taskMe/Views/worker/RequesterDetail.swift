@@ -43,6 +43,7 @@ struct RequesterDetail: View {
                         guard let uid = Auth.auth().currentUser?.uid else {return}
                         let database = Database.database().reference().child("requests/\(uid)")
                         let userObject : [String : Any] = ["requesterName" : name, "requesterEmail" : email, "workerName" : self.user.fullname, "workerEmail" : self.user.email, "job" : job, "description" : description, "price" : price,  "accepted" : true]
+                        database.setValue(userObject)
                     }
                 }
             }
