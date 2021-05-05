@@ -62,7 +62,7 @@ struct RequesterDetail: View {
                 for i in 0...actualRequests.count-1{
                     let reqData = actualRequests[i]
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
-    //                guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
+ //                   guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
                     guard let email = dataWithinEachIndex["requesterEmail"] as? String else {return}
                     guard let job = dataWithinEachIndex["job"] as? String else {return}

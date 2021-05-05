@@ -21,7 +21,7 @@ struct MyTasksView: View {
     @State var user: UserViewModel = UserViewModel()
     @State var didAppear = false
     
-    @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
+    @State var workers : [Worker] = []
     
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
