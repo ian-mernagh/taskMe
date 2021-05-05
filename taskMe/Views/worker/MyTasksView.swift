@@ -63,14 +63,12 @@ struct MyTasksView: View {
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                     guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
-                    guard let workerEmail = dataWithinEachIndex["workerEmail"] as? String else {return}
-                    guard let workerName = dataWithinEachIndex["workerName"] as? String else {return}
                     guard let requesterEmail = dataWithinEachIndex["requesterEmail"] as? String else {return}
                     guard let requesterName = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if accepted == true && self.user.fullname==workerName{
+                    if accepted == true {
                         self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description))
                     }
                 }

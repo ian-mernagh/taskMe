@@ -57,7 +57,7 @@ struct MakeRequestsView: View {
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let database = Database.database().reference().child("requests/\(uid)")
-        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email, "workerName" : "", "workerEmail" : "", "job" : job, "description" : description, "price" : price,  "accepted" : false]
+        let userObject : [String : Any] = ["requesterName" : self.user.fullname, "requesterEmail" : self.user.email,  "job" : job, "description" : description, "price" : price,  "accepted" : false]
         database.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let currentRequests = snapshot.value as? [Any] else {
                 database.child("0").setValue(userObject)

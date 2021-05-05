@@ -58,19 +58,17 @@ struct RequesterHomeView: View {
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                     guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
-                    guard let email = dataWithinEachIndex["workerEmail"] as? String else {return}
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
-                    guard let name = dataWithinEachIndex["workerName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
                     if accepted==false{
-                        self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job))
+                        self.workers.append(Worker(image: "user", name: "Pending Worker", email: "Pending Email", price: price, request: job, description: description))
                         self.count+=1
                     }
-                    else if accepted==true{
-                        self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description : description))
-                        self.count+=1
-                    }
+//                    else if accepted==true{
+//                        self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description : description))
+//                        self.count+=1
+//                    }
                 }
 //            }
     
@@ -115,7 +113,6 @@ struct RequesterHomeView: View {
                                         if !self.didAppear{
                                             self.loadImage()
                                             self.loadName()
-                                            print("My guyyy be appearing once!")
                                             self.updateWorkers()
                                             self.didAppear = true
                                         }

@@ -63,8 +63,6 @@ struct WorkerHomeView: View {
                       guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                       guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                       guard let description = dataWithinEachIndex["description"] as? String else {return}
-                      guard let workerEmail = dataWithinEachIndex["workerEmail"] as? String else {return}
-                      guard let workerName = dataWithinEachIndex["workerName"] as? String else {return}
                       guard let requesterEmail = dataWithinEachIndex["requesterEmail"] as? String else {return}
                       guard let requesterName = dataWithinEachIndex["requesterName"] as? String else {return}
                       guard let job = dataWithinEachIndex["job"] as? String else {return}

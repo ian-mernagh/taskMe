@@ -74,7 +74,7 @@ struct RequesterDetail: View {
                     if job == self.worker.request{
                         guard let uid = Auth.auth().currentUser?.uid else {return}
                         let database = Database.database().reference().child("requests/\(uid)")
-                        let userObject : [String : Any] = ["requesterName" : name, "requesterEmail" : email, "workerName" : self.user.fullname, "workerEmail" : self.user.email, "job" : job, "description" : description, "price" : price,  "accepted" : true]
+                        let userObject : [String : Any] = ["requesterName" : name, "requesterEmail" : email, "job" : job, "description" : description, "price" : price,  "accepted" : true]
                         
                         database.child("\(i)").setValue(userObject)
 //                        database.observeSingleEvent(of: .value, with: { (snapshot) in
