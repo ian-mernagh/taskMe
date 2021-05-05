@@ -26,13 +26,13 @@ struct WorkerCard: View {
                 .clipped()
             NavigationLink(destination: WorkerDetail(worker: $worker, workers: $workers)){
                 VStack(alignment: .leading){
-                    Text(worker.name)
+                    Text(worker.request)
                         .font(.system(size: 30))
                         .foregroundColor(.white)
                         .font(.system(size: 200))
                         .minimumScaleFactor(0.0001)
                         .lineLimit(1)
-                    Text(worker.request)
+                    Text(worker.name)
                         .font(.system(size: 20))
                         .foregroundColor(.white)
                         .minimumScaleFactor(0.01)

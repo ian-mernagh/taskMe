@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct MyTasksView: View {
-  
+    
     @State private var showProfileView = false
     @EnvironmentObject var userInfo : UserInfo
     @State private var image: Image = Image("user")
@@ -21,7 +21,8 @@ struct MyTasksView: View {
     @State var user: UserViewModel = UserViewModel()
     @State var didAppear = false
     
-    @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
+    @State var workers : [Worker] = []
+    // @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
     
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
@@ -38,21 +39,22 @@ struct MyTasksView: View {
     }
     
     func loadName(){
-             guard let uid  = Auth.auth().currentUser?.uid else {return}
-             var ref: DatabaseReference!
-             ref = Database.database().reference()
-             ref.child("users/\(uid)/name").getData { (error, snapshot) in
-                 
-                 if let error = error {
-                     print("Error getting data \(error)")
-                 }
-                 else if snapshot.exists() {
-                     self.user.fullname = ("\(snapshot.value!)")
-                 }
-             }
-         }
-       
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
+            
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
+        }
+    }
+    
     func updateWorkers(){
+        self.workers = []
         Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
             guard let workers = snapshot.value as? [String: Any] else {return}
             for(uid, requests) in workers{
@@ -61,13 +63,15 @@ struct MyTasksView: View {
                     guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
                     guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
                     guard let description = dataWithinEachIndex["description"] as? String else {return}
-                    guard let email = dataWithinEachIndex["requesterEmail"] as? String else {return}
+                    guard let workerEmail = dataWithinEachIndex["workerEmail"] as? String else {return}
+                    guard let workerName = dataWithinEachIndex["workerName"] as? String else {return}
+                    guard let requesterEmail = dataWithinEachIndex["requesterEmail"] as? String else {return}
+                    guard let requesterName = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
-                    guard let name = dataWithinEachIndex["requesterName"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if accepted == true && self.user.fullname==name{
-                        self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description: description))
+                    if accepted == true && self.user.fullname==workerName{
+                        self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description))
                     }
                 }
             }
@@ -90,10 +94,10 @@ struct MyTasksView: View {
                             .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
                     }.onAppear {
                         if !self.didAppear{
-                            self.didAppear = true
-                            self.workers = []
                             self.loadImage()
+                            self.loadName()
                             self.updateWorkers()
+                            self.didAppear = true
                         }
                     }.onDisappear {
                         }

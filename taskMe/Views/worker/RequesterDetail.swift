@@ -36,6 +36,7 @@ struct RequesterDetail: View {
             }
             else if snapshot.exists() {
                 self.user.fullname = ("\(snapshot.value!)")
+                print("\(snapshot.value!)")
             }
         }
     }
@@ -51,6 +52,7 @@ struct RequesterDetail: View {
             }
             else if snapshot.exists() {
                 self.user.email = ("\(snapshot.value!)")
+                print("\(snapshot.value!)")
             }
         }
     }
@@ -103,9 +105,9 @@ struct RequesterDetail: View {
             Button(action: {
                 self.loadName()
                 self.loadEmail()
+                print(self.user.fullname)
+                print(self.user.email)
                 self.acceptRequest()
-                print(self.worker.request)
-                
             }) {
                 Text("Accept Request")
                     .frame(width: 200)

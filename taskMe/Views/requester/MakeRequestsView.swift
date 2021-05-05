@@ -81,7 +81,7 @@ struct MakeRequestsView: View {
                     Text("Make Request").frame(width: 500).padding().font(.largeTitle).foregroundColor(Color.white)
                     Group {
                         VStack(alignment: .leading) {
-                            TextField("Job", text: self.$job).autocapitalization(.words)
+                            TextField("Job", text: self.$job).autocapitalization(.none)
                             //                            if !user.validNameText.isEmpty {
                             //                                Text(user.validNameText).font(.caption).foregroundColor(.red)
                             //                            }

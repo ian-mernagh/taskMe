@@ -35,32 +35,48 @@ struct WorkerHomeView: View {
         }
     }
     
-    @State var workers : [Worker] = []
-    
-    func updateWorkers(){
-        Database.database().reference().child("requests").observeSingleEvent(of: DataEventType.value) { (snapshot) in
-            guard let workers = snapshot.value as? [String: Any] else {return}
-            for(uid, requests) in workers{
-                guard let actualRequests = requests as? [Any] else {return}
-                for reqData in actualRequests{
-                    guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
-                    guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
-                    guard let description = dataWithinEachIndex["description"] as? String else {return}
-                    guard let email = dataWithinEachIndex["requesterEmail"] as? String else {return}
-                    guard let job = dataWithinEachIndex["job"] as? String else {return}
-                    guard let name = dataWithinEachIndex["requesterName"] as? String else {return}
-                    guard let price = dataWithinEachIndex["price"] as? String else {return}
-                    
-                    if accepted == false {
-                        
-                        self.workers.append(Worker(image: "user", name: name, email: email, price: price, request: job, description: description))
-                    }
-                }
-            }
+    func loadName(){
+        guard let uid  = Auth.auth().currentUser?.uid else {return}
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users/\(uid)/name").getData { (error, snapshot) in
             
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                self.user.fullname = ("\(snapshot.value!)")
+            }
         }
     }
     
+
+    @State var workers : [Worker] = []
+    
+     func updateWorkers(){
+          self.workers = []
+          Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
+              guard let workers = snapshot.value as? [String: Any] else {return}
+              for(uid, requests) in workers{
+                  guard let actualRequests = requests as? [Any] else {return}
+                  for reqData in actualRequests{
+                      guard let dataWithinEachIndex = reqData as? [String: Any] else {return}
+                      guard let accepted = dataWithinEachIndex["accepted"] as? Bool else {return}
+                      guard let description = dataWithinEachIndex["description"] as? String else {return}
+                      guard let workerEmail = dataWithinEachIndex["workerEmail"] as? String else {return}
+                      guard let workerName = dataWithinEachIndex["workerName"] as? String else {return}
+                      guard let requesterEmail = dataWithinEachIndex["requesterEmail"] as? String else {return}
+                      guard let requesterName = dataWithinEachIndex["requesterName"] as? String else {return}
+                      guard let job = dataWithinEachIndex["job"] as? String else {return}
+                      guard let price = dataWithinEachIndex["price"] as? String else {return}
+                      
+                      if accepted == false {
+                          self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description))
+                      }
+                  }
+              }
+          }
+      }
     var body: some View {
         
         ZStack{            
@@ -76,14 +92,14 @@ struct WorkerHomeView: View {
                         image
                             .renderingMode(.original).resizable().frame(width: 45, height: 45, alignment: .center).cornerRadius(45)
                     }.onAppear {
-                         if !self.didAppear{
-                            
-                            self.loadImage()
-                            self.updateWorkers()
-                            self.didAppear = true
-                        }
+                             if !self.didAppear{
+                                                                       self.loadImage()
+                                                                       self.loadName()
+                                                                       print("My guyyy be appearing once!")
+                                                                       self.updateWorkers()
+                                                                       self.didAppear = true
+                                                                   }
                     }.onDisappear {
-                    
                         }
                 )
             }
