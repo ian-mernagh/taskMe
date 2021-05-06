@@ -22,6 +22,7 @@ struct MyTasksView: View {
     @State var didAppear = false
     
     @State var workers : [Worker] = []
+//    @State var workers : [Worker] = [Worker(image: "user", name: "Peter", email: "Pan", price: "30", request: "Buy a New Pan", description: "My old ban broke and I need a new one. Go to Walmart and purchase one.", accepted: false)]
     
     func loadImage(){
         guard let uid  = Auth.auth().currentUser?.uid else {return}
@@ -66,19 +67,23 @@ struct MyTasksView: View {
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    var count = 0
-                                       for w in self.workers {
-                                           if !(w.request==job) && accepted == true{
-                                               count+=1
-                                           }
-                                       }
-                    
-                    if count==self.workers.count {
-                                           self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
-                                       }
-//                    if accepted == true {
-//                        newWorkers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
-//                    }
+                    if self.workers.count==0 && accepted==true {
+                        self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+                    }
+                    else if self.workers.count>0 && accepted==true {
+                        var count = 0
+                        for w in self.workers {
+                            if !(w.request==job) && accepted == true{
+                                count+=1
+                            }
+                        }
+                        if count==self.workers.count && self.workers.count>0{
+                            self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+                        }
+                    }
+                    //                    if accepted == true {
+                    //                        newWorkers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+                    //                    }
                 }
             }
         }

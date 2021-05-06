@@ -51,7 +51,7 @@ struct WorkerHomeView: View {
     }
     
 
-    @State var workers : [Worker] = [Worker(image: "user", name: "Mark", email: "Ingram", price: "20", request: "Clean my yard", description: "Pick up the trash that is on my yard and put it in the garbage bin", accepted: true)]
+    @State var workers : [Worker] = [Worker(image: "user", name: "Mark", email: "markingram@gmail.com", price: "20", request: "Clean my yard", description: "Pick up the trash that is on my yard and put it in the garbage bin", accepted: true)]
     
      func updateWorkers(){
           Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in

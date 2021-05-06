@@ -24,6 +24,7 @@ struct WorkerDetail: View {
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
             Text(worker.name).font(.largeTitle)
+            Text(worker.email)
             Text("Price: $" + worker.price)
             Text("Task: " + worker.request)
             Text(worker.description)
