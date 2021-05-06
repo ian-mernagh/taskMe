@@ -51,10 +51,9 @@ struct WorkerHomeView: View {
     }
     
 
-    @State var workers : [Worker] = []
+    @State var workers : [Worker] = [Worker(image: "user", name: "Mark", email: "Ingram", price: "20", request: "Clean my yard", description: "Pick up the trash that is on my yard and put it in the garbage bin", accepted: true)]
     
      func updateWorkers(){
-          self.workers = []
           Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
               guard let workers = snapshot.value as? [String: Any] else {return}
               for(uid, requests) in workers{
@@ -68,9 +67,19 @@ struct WorkerHomeView: View {
                       guard let job = dataWithinEachIndex["job"] as? String else {return}
                       guard let price = dataWithinEachIndex["price"] as? String else {return}
                       
-                      if accepted == false {
-                          self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description))
-                      }
+                    var count = 0
+                    for w in self.workers {
+                        if !(w.request==job) && accepted == false{
+                            count+=1
+                        }
+                    }
+                    
+                    if count==self.workers.count {
+                        self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+                    }
+//                      if accepted == false {
+//                        newWorkers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+//                      }
                   }
               }
           }

@@ -23,9 +23,10 @@ struct WorkerDetail: View {
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
-            Text(worker.name)
-            Text(worker.price)
-            Text(worker.request)
+            Text(worker.name).font(.largeTitle)
+            Text("Price: $" + worker.price)
+            Text("Task: " + worker.request)
+            Text(worker.description)
             
             }
 

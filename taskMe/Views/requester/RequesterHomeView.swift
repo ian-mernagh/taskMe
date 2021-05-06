@@ -23,14 +23,14 @@ struct RequesterHomeView: View {
     @State var didAppear = false
     
     @State var workers : [Worker] =
-        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog"),
-         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", price: "20.00", request: "Mow the lawn"),
-           Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", price: "10.00", request: "Buy the groceries"),
-           Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", price: "5.00", request: "Carpool my son"),
-           Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", price: "30.00", request: "Tutor my daughter"),
-           Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", price: "2.50", request: "Water my plants"),
-           Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", price: "15.00", request: "Wash the car"),
-           Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", price: "2.50", request: "Take out the trash")
+        [Worker(image: "Lowry", name: "Ben Lowry", email: "ben@NewWaveComputers.com", price: "10.00", request: "Walk my dog", description: "Walk my dog around the neighborhood for 30 minutes."),
+         Worker(image: "Ginzburg", name: "Aslan Ginzburg", email: "aslan@NewWaveComputers.com", price: "20.00", request: "Mow the lawn", description: "I have my own lawn mower. Just come by and use it to cut my lawn."),
+         Worker(image: "Yovel", name: "Caroline Galio", email: "caroline@NewWaveComputers.com", price: "10.00", request: "Buy the groceries", description: "I need someone to go to Whole Foods and purchase some items for me."),
+           Worker(image: "Long", name: "Danny Farah", email: "danny@NewWaveComputers.com", price: "5.00", request: "Pick up my son", description: "Please go to Bala Cynwyd Middle School, pick up my son, and drop him off for me."),
+           Worker(image: "Beer", name: "Madison Beer", email: "madison@NewWaveComputers.com", price: "30.00", request: "Tutor my daughter", description: "My daughter needs some help with her essay. She's in 3rd grade."),
+           Worker(image: "Myers", name: "Michael Myers", email: "michael@NewWaveComputers.com", price: "2.50", request: "Water my plants", description: "I need someone to water the plants in my backyard."),
+           Worker(image: "Spencer", name: "Logan Spencer", email: "logan@NewWaveComputers.com", price: "15.00", request: "Wash the car", description: "I need my car washed by the end of the day."),
+           Worker(image: "Patterson", name: "Bridget Patterson", email: "bridget@NewWaveComputers.com", price: "10", request: "Take out the trash", description: "Empty all the trash cans in my house and throw them in the garbage bin.")
               ]
     
     func loadName(){

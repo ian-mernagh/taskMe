@@ -72,10 +72,9 @@ struct RequesterDetail: View {
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
                     if job == self.worker.request{
-                        guard let uid = Auth.auth().currentUser?.uid else {return}
                         let database = Database.database().reference().child("requests/\(uid)")
                         let userObject : [String : Any] = ["requesterName" : name, "requesterEmail" : email, "job" : job, "description" : description, "price" : price,  "accepted" : true]
-                        
+                                                
                         database.child("\(i)").setValue(userObject)
 //                        database.observeSingleEvent(of: .value, with: { (snapshot) in
 //                            guard let currentRequests = snapshot.value as? [Any] else {
@@ -99,9 +98,10 @@ struct RequesterDetail: View {
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
                 .frame(width: 300, height: 300, alignment: .center)
-            Text(worker.name)
-            Text(worker.price)
-            Text(worker.request)
+            Text(worker.name).font(.largeTitle)
+            Text("Price: $" + worker.price)
+            Text("Task: " + worker.request)
+            Text(worker.description)
             Button(action: {
                 self.loadName()
                 self.loadEmail()

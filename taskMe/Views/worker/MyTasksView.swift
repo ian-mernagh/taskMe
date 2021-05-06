@@ -21,7 +21,7 @@ struct MyTasksView: View {
     @State var user: UserViewModel = UserViewModel()
     @State var didAppear = false
     
-    @State var workers : [Worker] = []
+    @State var workers : [Worker] = [Worker(image: "user", name: "Peter", email: "Pan", price: "30", request: "Buy a New Pan", description: "My old ban broke and I need a new one. Go to Walmart and purchase one.", accepted: false)]
     // @State var workers : [Worker] = [Worker(image: "user", name: "ian", email: "s014396@students.lmsd.org", type: "Yea", requester: "ye", price: "72.2", request: "eat", description: "eat my food")]
     
     func loadImage(){
@@ -54,7 +54,6 @@ struct MyTasksView: View {
     }
     
     func updateWorkers(){
-        self.workers = []
         Database.database().reference().child("requests").observe(DataEventType.value) { (snapshot) in
             guard let workers = snapshot.value as? [String: Any] else {return}
             for(uid, requests) in workers{
@@ -68,9 +67,19 @@ struct MyTasksView: View {
                     guard let job = dataWithinEachIndex["job"] as? String else {return}
                     guard let price = dataWithinEachIndex["price"] as? String else {return}
                     
-                    if accepted == true {
-                        self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description))
-                    }
+                    var count = 0
+                                       for w in self.workers {
+                                           if !(w.request==job) && accepted == true{
+                                               count+=1
+                                           }
+                                       }
+                    
+                    if count==self.workers.count {
+                                           self.workers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+                                       }
+//                    if accepted == true {
+//                        newWorkers.append(Worker(image: "user", name: requesterName, email: requesterEmail, price: price, request: job, description: description, accepted: accepted))
+//                    }
                 }
             }
         }
